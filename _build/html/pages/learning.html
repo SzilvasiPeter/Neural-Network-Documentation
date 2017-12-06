@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="hu">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Tanulás &#8212; ANN  dokumentáció</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -25,9 +22,10 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Tárgymutató" href="../genindex.html" />
     <link rel="search" title="Keresés" href="../search.html" />
+    <link rel="next" title="Backpropagation többrétegű hálózatnál (MLP)" href="backpropagation.html" />
     <link rel="prev" title="A neurális hálózatok felépítése" href="neural_network.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -146,7 +144,7 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <dt>Sztochasztikus szélsőérték-kereső eljárások</dt>
 <dd><p class="first">A kedvező konvergencia-sebességet általában csak <strong>kvadratikus(!MAGYARÁZAT!)</strong> hibafelület mellet biztosítják, továbbá a minimumhely elérése csak akkor biztos, ha a felületen nincsenek lokális minimumok (unmodális felület).</p>
 <p>A lokális minimumok lehetősége fennállhatnak ez konvergencia szempontjából kedvezőtlen. A lokális minimumhelyekben való bennragadás elkerülésére sztochasztikus gradiens eljárásokat dolgoztak ki.</p>
-<p>Jellemzője hogy a kritériumfelületen valamilyen valószínűséggel a felfelé mozgást is megengedik, lehetővé téve a lokális minimumból való kiszabadulást. Gyakorlatban a hálózat súlyaihoz egy valószínűségi változó valamely aktuális értékét adjuk. A zaj felhasználása az egyik módja a súlyok véletlenszerű &#8220;megrázása&#8221;.</p>
+<p>Jellemzője hogy a kritériumfelületen valamilyen valószínűséggel a felfelé mozgást is megengedik, lehetővé téve a lokális minimumból való kiszabadulást. Gyakorlatban a hálózat súlyaihoz egy valószínűségi változó valamely aktuális értékét adjuk. A zaj felhasználása az egyik módja a súlyok véletlenszerű „megrázása”.</p>
 <div class="math">
 \[\C^~ (w) = C(w) + c(k) * \sum_{i=1}^{N} w_i * n_i(k)\]</div>
 <ul class="last">
@@ -160,16 +158,20 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <blockquote>
 <div><p>A természetes szelekciót utánozzák. A genetikus algoritmusok egyszerre több pontokban értékelik a kritériumfelületet. A megoldások egy adott lépésben érvényes halmazát <em>populáció</em>nak nevezik. Az egymást követő populációkat generációnak nevezik, tehát az algoritmus az egymást követő generációk során egyre jobb megoldás-halmazokat állít elő.**ÁBRA**</p>
 <p>A populáció elemeinek tulajdonságát <em>kromoszómák</em>kal reprezentálják. A kromoszómák jelenesetben olyan bitfüzérek, amelyekben minden egyes bit egy tulajdonságot reprezentál (1:tulajdonsággal rendelkezik, 0:tulajdonság hiánya).</p>
-<p>Fő jellemzői:
-* Egész paraméter készletekkel dolgozik
-* Keresés során, a megoldások egész halmazát adja meg
-* Csak a kritériumfüggvény egyes értékeit használja
-* Valószínűségi átmenetekkel dolgozik</p>
-<p>Az egymást követő populációk egyre jobb tulajdonságú stringekkel rendelkeznek. A stringhez hozzárendelhetünk egy &#8220;jóság&#8221; (<em>fitness</em>) értéket, ami a string által képviselt kritériumfüggvény értéke.</p>
-<p>A generációk közötti átmeneti operátorok:
-* reprodukció: Egy string a következő generáció részeként is megjelenik. Bekövetkezése a string jóságával kapcsolatos.
-* keresztezés: Két kromoszóma tulajdonságaik keresztezése révén hoznak létre új tulajdonságot. <strong>ÁBRA</strong>
-* mutáció: Egy string egy bitje véletlenszerűen megváltozik. az új bitkombinációk a megoldás tér olyan területeit is feltérképezhetik, amelyekre az eddigi populációk nem terjedtek ki.</p>
+<p>Fő jellemzői:</p>
+<ul class="simple">
+<li>Egész paraméter készletekkel dolgozik</li>
+<li>Keresés során, a megoldások egész halmazát adja meg</li>
+<li>Csak a kritériumfüggvény egyes értékeit használja</li>
+<li>Valószínűségi átmenetekkel dolgozik</li>
+</ul>
+<p>Az egymást követő populációk egyre jobb tulajdonságú stringekkel rendelkeznek. A stringhez hozzárendelhetünk egy „jóság” (<em>fitness</em>) értéket, ami a string által képviselt kritériumfüggvény értéke.</p>
+<p>A generációk közötti átmeneti operátorok:</p>
+<ul class="simple">
+<li>reprodukció: Egy string a következő generáció részeként is megjelenik. Bekövetkezése a string jóságával kapcsolatos.</li>
+<li>keresztezés: Két kromoszóma tulajdonságaik keresztezése révén hoznak létre új tulajdonságot. <strong>ÁBRA</strong></li>
+<li>mutáció: Egy string egy bitje véletlenszerűen megváltozik. az új bitkombinációk a megoldás tér olyan területeit is feltérképezhetik, amelyekre az eddigi populációk nem terjedtek ki.</li>
+</ul>
 </div></blockquote>
 </li>
 </ul>
@@ -239,6 +241,7 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="neural_network.html" title="előző fejezet">A neurális hálózatok felépítése</a></li>
+      <li>Next: <a href="backpropagation.html" title="következő fejezet">Backpropagation többrétegű hálózatnál (MLP)</a></li>
   </ul></li>
 </ul>
 </div>
@@ -260,7 +263,7 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
       &copy;2017, Szilvasi_Peter.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

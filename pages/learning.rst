@@ -95,6 +95,7 @@ Regularizáció: A regularizáció eljárás során a kritériumfüggvény egy �
 		A populáció elemeinek tulajdonságát *kromoszómák*\ kal reprezentálják. A kromoszómák jelenesetben olyan bitfüzérek, amelyekben minden egyes bit egy tulajdonságot reprezentál (1:tulajdonsággal rendelkezik, 0:tulajdonság hiánya).
 
 		Fő jellemzői:
+
 		* Egész paraméter készletekkel dolgozik
 		* Keresés során, a megoldások egész halmazát adja meg
 		* Csak a kritériumfüggvény egyes értékeit használja
@@ -103,6 +104,7 @@ Regularizáció: A regularizáció eljárás során a kritériumfüggvény egy �
 		Az egymást követő populációk egyre jobb tulajdonságú stringekkel rendelkeznek. A stringhez hozzárendelhetünk egy "jóság" (*fitness*) értéket, ami a string által képviselt kritériumfüggvény értéke.
 
 		A generációk közötti átmeneti operátorok:
+
 		* reprodukció: Egy string a következő generáció részeként is megjelenik. Bekövetkezése a string jóságával kapcsolatos.
 		* keresztezés: Két kromoszóma tulajdonságaik keresztezése révén hoznak létre új tulajdonságot. **ÁBRA**
 		* mutáció: Egy string egy bitje véletlenszerűen megváltozik. az új bitkombinációk a megoldás tér olyan területeit is feltérképezhetik, amelyekre az eddigi populációk nem terjedtek ki.
