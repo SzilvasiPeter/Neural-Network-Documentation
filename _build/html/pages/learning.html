@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hu">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tanulás &#8212; ANN  dokumentáció</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Tárgymutató" href="../genindex.html" />
+    <link rel="search" title="Keresés" href="../search.html" />
+    <link rel="prev" title="A neurális hálózatok felépítése" href="neural_network.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tanulas">
+<h1>Tanulás<a class="headerlink" href="#tanulas" title="Hivatkozás erre a fejezetcímre">¶</a></h1>
+<p>Neurális hálózatok egyik legfőbb jellemzője az <em>adaptáció</em>s, tanulási képesség. Az a tulajdonság, hogy <em>viselkedésüket</em> valamely cél elérése érdekében <em>módosítani képesek</em>. <em>Neurális hálózat</em>okban a tanulás egyszerűen a rendszer valamilyen <em>képesség</em>ének <em>javítás</em>át jelenti. <strong>Például</strong> olyan paramétereket keresünk, amely mellet egy hálózat adott függvénynél minél jobb approximációjára lesz képes.
+Neurális hálózatkoban a tanulás alábbi főbb formái:</p>
+<blockquote>
+<div><ul class="simple">
+<li>tanulás tanítóval, <em>ellenőrzött</em> vagy felügyelt <em>tanulás</em></li>
+<li>tanulás tanító nélkül, <em>nemellenőrzött</em> vagy felügyelet nélküli <em>tanulás</em></li>
+<li><em>analitikus tanulás</em></li>
+</ul>
+</div></blockquote>
+<div class="section" id="ellenorzott-tanulas-supervised-learning">
+<h2>Ellenőrzött tanulás (supervised learning)<a class="headerlink" href="#ellenorzott-tanulas-supervised-learning" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<p>Tanítás azon alapszik, hogy ismertek a hálózatnak valamely <em>bemenet</em>ekre adandó kivánt válaszai, így a hálózat tényleges <em>válasz</em>a minden esetben közvetlenül <em>összehasonlítható</em> a kívánt válasszal. Az <em>összehasonlítás eredménye</em> felhasználható a <em>hálózat</em> olyan <em>módosítás</em>ára, hogy tényleges és a kivánt <em>válaszok</em> minél inkább <em>megegyezzenek</em>.
+Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes vagy hibás</em>, akkor <em>megerősítő</em> (reinforcement) <em>tanulás</em>nak nevezzük.</p>
+<ol class="arabic simple">
+<li>Tanitóval történő tanítás</li>
+</ol>
+<p>A tanítandó rendszer változtatása összetartozó be és kimeneti tanító mintapárok felhasználásával történik (modell-illesztési feladat).</p>
+<p><strong>Kép</strong> (IsmeretlenRendzser[g(u,n)]-&gt;KritFgv[C(d,y)]-&gt;ParamMódosító-&gt;Modell[g^(w,u)]-&gt;KritFgv)Füzetbe</p>
+<p>Magyarázatok:IsmeretlenR.,KritFgv, ParamMód., Modell</p>
+<p><strong>Kritériumfüggvények</strong>:</p>
+<p>Neurális hálózatoknál a súlytényezők megfelelő kialakítása a tanítás célja. Jelölések: w* optimális, w a tényleges súlyvektor, hálózat jósága: C(w*, w). A kritériumfügvények a hálózat kimenetének és kivánt válasznak (d) valamilyen összehasonlítását végzik:</p>
+<blockquote>
+<div><div class="math">
+\[C = f(y, d).\]</div>
+</div></blockquote>
+<p>Leggyakoribb a négyzetes hibakritérium, melyet a zaj jelenléte miatt várható értékként értelmezzünk:</p>
+<blockquote>
+<div><div class="math">
+\[C(d,y)=E{((d-y)^T)*(d-y)} = E{\sum_{j}(d_j - y_j)^2}\]</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>Előnye:</dt>
+<dd><ul class="first last simple">
+<li>matematikai szempontból kedvező</li>
+<li>jobban közelítő gradienst kapunk</li>
+</ul>
+</dd>
+</dl>
+<p>Regularizáció: A regularizáció eljárás során a kritériumfüggvény egy újabb taggal bővül, és az így kapott eredő kritériumfüggvény minimumát keressük</p>
+<blockquote>
+<div><div class="math">
+\[C_r= C + \lambda *C_i\]</div>
+</div></blockquote>
+<p><strong>A modell</strong>:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Neurális hálózatokn alkalmazásánál az esetek döntő többségében olyan rendszerekkel állunk szembe, amelyekhez nem illeszthetők paramétereikben lineáris modellek. A szélsőérték-kereső eljárások lineáris modellek esetére vizsgálják.</p>
+</li>
+<li><p class="first">Gradiens alapú szélsőérték-kereső eljárások:</p>
+<blockquote>
+<div><ul class="simple">
+<li>A C(w*, w) kritériumfüggvény minimumát, vagyis azt a <strong>w</strong> értéket keressük, ahol a kritériumfüggvény <strong>w</strong> szerinti gradiense               zérus:</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="math">
+\[\triangledown [C(w)] = \dfrac{\partial C}{\partial w} = 0.\]</div>
+<ul>
+<li><dl class="first docutils">
+<dt>LMS algoritmus:</dt>
+<dd><ul class="first last simple">
+<li>Az átlagos négyzetes hiba helyett a pillanatnyi négyzetes hibából indulunk ki.</li>
+<li><strong>Kibővíteni(kis leírással, jellemzőkkel, 1-(2) képlet, Kép</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Perceptron tanulás</dt>
+<dd><ul class="first simple">
+<li>LMS eljáráshoz hasonló módszer, alapvetően osztályozási feladatok megoldására szolgál</li>
+<li>A tanitandó hálózatnak bináris (+1, -1) kimenetei vannak</li>
+<li>Konvergál, ha lineáris tanítómintákat alkalmazunk</li>
+<li><dl class="first docutils">
+<dt>Különbség az LMS algoritmushoz képest</dt>
+<dd><ul class="first last">
+<li>Az iteráció leáll, ha a tanítóminták szétválasztása befejeződött</li>
+<li>A paraméterek nagyságát nem korlátozza</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p class="last"><strong>képlet</strong></p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p class="first">Megerősitő tanulás</p>
+<blockquote>
+<div><p>Számos esetben nem rendelkezünk az adott bemenetekhez tartozó kivánt válaszokkal. Mindössze annyit tudunk, hogy adott bemenetekre a hálózat tényleges válasza helyes vagy hibás. A tanulás eljárása során csak arra elegendő, hogy eldöntsük: szükség van-e a hálózat módosítására vagy sem, de a módosítás mértékenek meghatározására már nem elegendő. A hiba mértéke és a kritériumfüggvény gradiense nem áll rendelkezésünkre.</p>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>Sztochasztikus szélsőérték-kereső eljárások</dt>
+<dd><p class="first">A kedvező konvergencia-sebességet általában csak <strong>kvadratikus(!MAGYARÁZAT!)</strong> hibafelület mellet biztosítják, továbbá a minimumhely elérése csak akkor biztos, ha a felületen nincsenek lokális minimumok (unmodális felület).</p>
+<p>A lokális minimumok lehetősége fennállhatnak ez konvergencia szempontjából kedvezőtlen. A lokális minimumhelyekben való bennragadás elkerülésére sztochasztikus gradiens eljárásokat dolgoztak ki.</p>
+<p>Jellemzője hogy a kritériumfelületen valamilyen valószínűséggel a felfelé mozgást is megengedik, lehetővé téve a lokális minimumból való kiszabadulást. Gyakorlatban a hálózat súlyaihoz egy valószínűségi változó valamely aktuális értékét adjuk. A zaj felhasználása az egyik módja a súlyok véletlenszerű &#8220;megrázása&#8221;.</p>
+<div class="math">
+\[\C^~ (w) = C(w) + c(k) * \sum_{i=1}^{N} w_i * n_i(k)\]</div>
+<ul class="last">
+<li><p class="first">Véletlen Keresés</p>
+<blockquote>
+<div><p>A paraméterek véletlenszerű megváltoztatásával probálkozunk. Ha egy próbálkozás eredményeképpen kapott paraméterhez tartozó kritériumérték az előző pontbelinél kisebb, az új pontot tekintjük a következő lépés kiinduló pontjának, ellenkező esetben a régi paramétert.</p>
+<p>A véletlen keresési módszer nem feltétlenül konvergálnak a globális minimumhoz.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Genetikus algoritmusok</p>
+<blockquote>
+<div><p>A természetes szelekciót utánozzák. A genetikus algoritmusok egyszerre több pontokban értékelik a kritériumfelületet. A megoldások egy adott lépésben érvényes halmazát <em>populáció</em>nak nevezik. Az egymást követő populációkat generációnak nevezik, tehát az algoritmus az egymást követő generációk során egyre jobb megoldás-halmazokat állít elő.**ÁBRA**</p>
+<p>A populáció elemeinek tulajdonságát <em>kromoszómák</em>kal reprezentálják. A kromoszómák jelenesetben olyan bitfüzérek, amelyekben minden egyes bit egy tulajdonságot reprezentál (1:tulajdonsággal rendelkezik, 0:tulajdonság hiánya).</p>
+<p>Fő jellemzői:
+* Egész paraméter készletekkel dolgozik
+* Keresés során, a megoldások egész halmazát adja meg
+* Csak a kritériumfüggvény egyes értékeit használja
+* Valószínűségi átmenetekkel dolgozik</p>
+<p>Az egymást követő populációk egyre jobb tulajdonságú stringekkel rendelkeznek. A stringhez hozzárendelhetünk egy &#8220;jóság&#8221; (<em>fitness</em>) értéket, ami a string által képviselt kritériumfüggvény értéke.</p>
+<p>A generációk közötti átmeneti operátorok:
+* reprodukció: Egy string a következő generáció részeként is megjelenik. Bekövetkezése a string jóságával kapcsolatos.
+* keresztezés: Két kromoszóma tulajdonságaik keresztezése révén hoznak létre új tulajdonságot. <strong>ÁBRA</strong>
+* mutáció: Egy string egy bitje véletlenszerűen megváltozik. az új bitkombinációk a megoldás tér olyan területeit is feltérképezhetik, amelyekre az eddigi populációk nem terjedtek ki.</p>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="nemellenorzott-tanulas-unsupervised-learning">
+<h2>Nemellenőrzött tanulás (unsupervised learning)<a class="headerlink" href="#nemellenorzott-tanulas-unsupervised-learning" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<p><em>Nem állnak rendelkezésünkre</em> adott bemenetekhez tartozó kivánt <em>válaszok</em>. Nincs vissza jelzés. Azt kell felfederítenünk, hogy van-e a hálózat bemenetére kerülő <em>adatok</em>ban <em>hasonlóság</em>, <em>korreláció</em>, <em>kategoriók</em> stb.</p>
+<p>A hálózat képes önmaga módosítására, emiatt szokás önszervező hálózatoknak (<em>selforganizing networks</em>) is nevezni.</p>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Hebb tanulás</dt>
+<dd><p class="first">Két processzáló elem közötti kapcsolat erőssége (súlytényezők) a processzáló elemek aktivitásának szorzatával arányosan növekszik</p>
+<div class="math">
+\[w_ij (k+1) = w_ij (k) + \mu * y_i * y_j\]</div>
+<p>ahol a w_ij az i-edik és a j-edik processzáló elem közötti súly és a y_i, ill. y_j a két processzáló elem kimenetének értéke. Ha a súly egy bemenet és egy processzáló elem között található</p>
+<div class="math">
+\[w_ij (k+1) = w_ij(k) + \mu * x_i * y_j\]</div>
+<p>Bizonyos hálózatoknál alkalmazzák az anti-Hebb tanulást, amelynél a súlymódosítás hasonló csak negatív előjellel:</p>
+<div class="last math">
+\[w_ij (k+1) = w_ij(k) - \mu * x_i * y_j\]</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Versengő tanulás</dt>
+<dd><p class="first">Egy processzáló elem-elrendezésben egy győztest válasszunk ki. A versengő tanulás célja általában a bemeneti mintatér olyan tartoményokra osztása, szegmentálása, hogy minden egyes tartományba tartozó bemenet hatására egy és csakis egy processzáló elem aktivizálódjon.</p>
+<dl class="docutils">
+<dt>A versengő tanulás két lépésből áll:</dt>
+<dd><ul class="first last simple">
+<li>Processzáló elemekből álló kimeneteket meghatározzuk a súlyvektorának felhasználásával.</li>
+<li>A győztes kiválasztása.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Ábra</strong></p>
+<p class="last">A tényleges tanulás, vagyis a súlyvektor módosítása csak a győztes processzáló elem súlyvektorát módosítjuk.</p>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="analitikus-tanulas">
+<h2>Analitikus tanulás<a class="headerlink" href="#analitikus-tanulas" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<p>A megfelelő viselkedést biztosító hálózat kialakítása <em>elméleti út</em>on, a feladatból határozható meg. Valójában ebben az esetben nem is beszélhetünk tanulásról, hiszen a <em>hálózat</em> megfelelő <em>kialakítása analitikus módszerekkel</em> végezhető el. Azokat a módszereket, amikor valamilyen energiafüggvény felírása képezi a súlyok meghatározásának alapját analitikus tanulásnak nevezzük.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Hopfield hálózat</dt>
+<dd>A modell a legegyszerűbb neurális hálózat, amely asszociatív memóriát valósít meg. A hálózatot leggyakrabban autoasszociatív feladatok megoldására használjuk. Ilyenkor a memóriában mintákat, gyakran digitalizált képeket tárolunk. A neurális hálózattól azt várjuk, hogy a tárolt információ zajos, torzított, esetleg hiányos változatának megmutatásakor az eredeti mintára asszociáljon.
+<strong>Ábra</strong></dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="neural_network.html" title="előző fejezet">A neurális hálózatok felépítése</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Gyorskeresés</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Ok" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Szilvasi_Peter.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/pages/learning.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

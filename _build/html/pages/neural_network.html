@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hu">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>A neurális hálózatok felépítése &#8212; ANN  dokumentáció</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Tárgymutató" href="../genindex.html" />
+    <link rel="search" title="Keresés" href="../search.html" />
+    <link rel="next" title="Tanulás" href="learning.html" />
+    <link rel="prev" title="Történeti áttekintés" href="overview.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="a-neuralis-halozatok-felepitese">
+<h1>A neurális hálózatok felépítése<a class="headerlink" href="#a-neuralis-halozatok-felepitese" title="Hivatkozás erre a fejezetcímre">¶</a></h1>
+<div class="section" id="definicioja-mukodese">
+<h2>Definíciója, működése<a class="headerlink" href="#definicioja-mukodese" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<p><em>Neurális háló</em>nak nevezzük azt a hardver vagy szoftver megvalósítású párhuzamos, elosztott működésre képes <em>információ feldolgozó eszköz</em>t, amely:</p>
+<ul class="simple">
+<li>azonos, vagy hasonló típusú, lokális feldolgozást végző műveleti elemek, neuronok (processing element, <strong>neuron</strong>) általában rendezett topológiájú, nagymértékben összekapcsolt rendszeréből áll,</li>
+<li>rendelkezik tanulási algoritmussal (<strong>learning algorithm</strong>), amely általában minta alapján való tanulást jelent, és az információfeldolgozás módját határozza meg,</li>
+<li>rendelkezik a megtanult információ felhasználását lehetővé tevő információ előhívási, vagy röviden előhívási algoritmussal (<strong>recall algorithm</strong>)</li>
+</ul>
+</div>
+<div class="section" id="felepites">
+<h2>Felépítés<a class="headerlink" href="#felepites" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>felépítés</dt>
+<dd><ul class="first last">
+<li><p class="first">neuron: Több bemenetű, egy kimenetű eszköz. A <em>bemenet</em>i értékekből a hálózat az <em>aktiváló függvény</em> alkalmazásával hozza létre a <em>kimeneti</em> értéket.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/neuron.png"><img alt="Neuron" class="align-center" src="../_images/neuron.png" style="width: 300px; height: 150px;" /></a>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>aktivációs függvény: A neuronokban használt <em>nemlinear</em>itások, ami <em>küszöbfüggvény</em> jellegű leképezés(<em>ÉT</em>:valós számok halmaza, <em>ÉK</em>: R, korlátos részhalmaza)</dt>
+<dd><blockquote class="first">
+<div><ul class="simple">
+<li>lépcsőfgv</li>
+<li>telítéses lineáris fgv</li>
+<li>tangens hiberbolikus fgv</li>
+<li>logisztikus fgv</li>
+</ul>
+</div></blockquote>
+<a class="last reference internal image-reference" href="../_images/activation_functions.png"><img alt="Activation Function" class="align-center" src="../_images/activation_functions.png" style="width: 300px; height: 150px;" /></a>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>bemenetek (nem feltétlen kell)</dt>
+<dd><ul class="first last simple">
+<li>gerjesztő</li>
+<li>gátló</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">összekötetések: <em>Egy kimenet több bemenet</em>tel össze<em>köthető</em>, ekkor valamennyi bemenet ugyanazt a jelet kapja, <em>kimenetek</em>et egymással <em>nem</em> köthetünk össze.</p>
+</li>
+<li><p class="first">topológia: A neuronok összekapcsolási rendszerét irányított gráffal reprezentáljuk. A gráf csomópontja a neuronoknak felelnek meg, míg az összekötetéseket(súlytényezők) az éleknek felelnek meg.</p>
+</li>
+</ul>
+<p>Háromféle neuront különböztethetünk meg:</p>
+<ul class="simple">
+<li><em>bemeneti neuronok</em>: Bemenetük a hálózat bemenete, kimenetük más neuronok meghajtására szolgál.</li>
+<li><em>kimeneti neuronok</em>: Kimenete a környezet felé továbbítja a kivánt információt.</li>
+<li><em>rejtett neuronok</em>: Bemeneteikkel, mind kimenetükkel kizárólat más neuronokhoz kapcsolódnak.</li>
+</ul>
+<p>Réteg: A neuronokat sok esetben rétegekbe (layer) szervezzük, ahol egy rétegbe hasonló típusú neuronok tartoznak(kapcsolataik is hasonlóak). Ennek megfelelően beszélhetünk bemeneti(<em>input layer</em>), rejtett(<em>hidden layer</em>) és kimeneti rétegről(<em>output layer</em>)</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/hidden_layer.jpg"><img alt="Neural Network with Hidden Layer" class="align-center" src="../_images/hidden_layer.jpg" style="width: 300px; height: 150px;" /></a>
+</div></blockquote>
+<p>Rétegenként súlyvektorok vannak a súlyvektorokat összefoglalhatjuk egy egész hálózatra kiterjedő súly mátrixra (<strong>W</strong>). A bemeneti, rejtett és kimeneti neuronok adatait is mátrixba tároljuk, majd ezekkel végezük a számításokat.
+Topológia szerint két fő csoport van</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Megjegyzés</p>
+<p class="last">A visszacsatolt-visszacsatolatlan tulajdonságot megfogalmazhatjuk a súlytényezők W mátrix segítségével.</p>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>visszacsatolt hálózatok (feedback recall): Ha a neuronok indexelésével elérhető hogy a W olyan háromszög mátrix legyen, melynek főátlóbeli elemei nullák.</dt>
+<dd><ul class="first last">
+<li>Globális visszacsatolás</li>
+<li>Lokális visszacsatolás: Három csoport van az elemi, a laterális és a rétegek közötti visszacsatolások.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>visszacsatolatlan hálózatok (feedforward recall)</li>
+</ul>
+</div>
+<div class="section" id="felhasznalasi-teruletei">
+<h2>Felhasználási területei<a class="headerlink" href="#felhasznalasi-teruletei" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<ul class="simple">
+<li><strong>asszociatív memória</strong>: Speciális memória, melybe <em>meghatározott mód</em>on (<em>tanulás</em>) információt írunk be, majd <em>olvassuk ki</em> (<em>recall</em>)</li>
+<li><strong>optimalizáló rendszer</strong>: Optimalizálás során általában valamilyen költséget kívánunk minimalizálni, a rendszer struktúrájának, illetve paramétereinek megfelelő megválasztásával.</li>
+<li><strong>approximáló rendszer</strong>: A megfelelő matematikai előállítása központi feladat a mérnöki alkalmazások számos területén, pl. képfeldolgozás, alakfelismerés, jelfeldolgozés stb. A hálózat képes minták alapján a keresett leképezés közelítő előállítására.</li>
+<li><strong>nem lineáris dinamikus rendszer</strong>: Neurális hálót kiegészítjük dinamikus komponensekkel. A tanítás rendszerint a statikus esetben is lassú, nehézkes, de a dinamikus esetben még ehhez képest is sokkal komplikáltabb, lassabb.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="overview.html" title="előző fejezet">Történeti áttekintés</a></li>
+      <li>Next: <a href="learning.html" title="következő fejezet">Tanulás</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Gyorskeresés</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Ok" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Szilvasi_Peter.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/pages/neural_network.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

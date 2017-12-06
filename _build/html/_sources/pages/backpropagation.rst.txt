@@ -1,0 +1,49 @@
+Backpropagation többrétegű hálózatnál (MLP)
+===========================================
+
+Egy processzáló elem szigmoid kimeneti nemlinearitással
+-------------------------------------------------------
+
+**ÁBRA**
+A hálózat felépítését az fenti ábrán láthatjuk. A súlymódosítást az LMS algoritmussal végezzük, a hibát a teljes hálózat kimenetén értelmezzük.
+
+.. math::
+	\varepsilon (k) = d(k) - y(k) = d(k) - sgm(s(k)) = d(k) - sgm(w^T (k)x(k))
+
+A pillanatnyi gradiens tehát:
+
+.. math::
+	\dfrac{\partial \varepsilon ^2}{\partial w} = 2\varepsilon(-sgm'(s))x
+
+ahol sgm'(s) a kimeneti nemlinearitás deriváltját jelöli.
+
+A logisztikus függvény, ill. deriváltja:
+
+.. math::
+	y = sgm(s) = \dfrac{1}{1+e^{-s}},	y' = sgm'(s) = y(1-y)
+
+A backpropagation algoritmus
+----------------------------
+
+**Ábra**
+
+A többrétegű hálózatok felépítése a fenti ábrán követhető. Az ábra egy két aktív régeteg tartalmazó hálózatot mutat, amelyben az első aktív rétegben - a rejetett rétegben - három, a második aktív rétegben - jelen esetben a kimeneti rétegben - két processzáló elem található. A hálózat tehát egy többrétegű előrecsatolt hálózat(FeedForward). A súlyvektorok meghatározása gradiens alapú ellenőrzött tanuló eljárással, tehát összetartozó (x,y) tanító párok felhasználásával történik.
+
+A tanító eljárás bemutatásához vezessük be a következő jelöléseket: legyen *l* a réteg index, *i* a rétegen belüli processzáló elem (PE) indexe, *j* a PE bemeneteit megkülönböztető index - ez lesz egyben a megfelelő súlyvektor komponenseinek indexe -  ez lesz egyben a megfelelő súlyvektor komponenseinek indexe is - és *k* a diszkrét időindex.(pl. PE_i^(l) az l-edk réteg i-edik processzáló elemét jelöli, w_i^(l) (k) pedig az *l*-edik réteg, *i*-edik prcesszáló elemének súlyvektorát a *k*-adik időpillanatban és w_ij^(l) (k) ugyanezen súlyvektornak a j-edik komponensét jelöli.)
+
+A hálózat tanítását két (aktív) rétegű hálózaton mutatjuk be. A kimenet hiba:
+
+.. math::
+	\varepsilon ^2 = \varepsilon_1^2 + \varepsilon_2^2 = (y_1 - d_1)^2 + (y_2 - d_2)^2
+
+A súly módosításhoz a megfelelő pillanatnyi gradienseket kell kiszámítani.
+
+.. math::
+	\dfrac{\partial \varepsilon ^2}{\partial w_{ij}^{(l)}}
+
+A súlymódosítás tehát
+
+.. math:: 
+	w_i^{(2)}(k+1) = w_i^{(2)}(k) + 2\mu\varepsilon_i(k)sgm'(s_i^{(2)})x^{(2)}(k) = w_i^{(2)} + 2\mu\delta_i^{(2)}(k)x^{(2)}(k)
+
+ 

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hu">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Backpropagation többrétegű hálózatnál (MLP) &#8212; ANN  dokumentáció</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Tárgymutató" href="../genindex.html" />
+    <link rel="search" title="Keresés" href="../search.html" />
+    <link rel="prev" title="Tanulás" href="learning.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="backpropagation-tobbretegu-halozatnal-mlp">
+<h1>Backpropagation többrétegű hálózatnál (MLP)<a class="headerlink" href="#backpropagation-tobbretegu-halozatnal-mlp" title="Hivatkozás erre a fejezetcímre">¶</a></h1>
+<div class="section" id="egy-processzalo-elem-szigmoid-kimeneti-nemlinearitassal">
+<h2>Egy processzáló elem szigmoid kimeneti nemlinearitással<a class="headerlink" href="#egy-processzalo-elem-szigmoid-kimeneti-nemlinearitassal" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<p><strong>ÁBRA</strong>
+A hálózat felépítését az fenti ábrán láthatjuk. A súlymódosítást az LMS algoritmussal végezzük, a hibát a teljes hálózat kimenetén értelmezzük.</p>
+<div class="math">
+\[\varepsilon (k) = d(k) - y(k) = d(k) - sgm(s(k)) = d(k) - sgm(w^T (k)x(k))\]</div>
+<p>A pillanatnyi gradiens tehát:</p>
+<div class="math">
+\[\dfrac{\partial \varepsilon ^2}{\partial w} = 2\varepsilon(-sgm'(s))x\]</div>
+<p>ahol sgm&#8217;(s) a kimeneti nemlinearitás deriváltját jelöli.</p>
+<p>A logisztikus függvény, ill. deriváltja:</p>
+<div class="math">
+\[y = sgm(s) = \dfrac{1}{1+e^{-s}},       y' = sgm'(s) = y(1-y)\]</div>
+</div>
+<div class="section" id="a-backpropagation-algoritmus">
+<h2>A backpropagation algoritmus<a class="headerlink" href="#a-backpropagation-algoritmus" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<p><strong>Ábra</strong></p>
+<p>A többrétegű hálózatok felépítése a fenti ábrán követhető. Az ábra egy két aktív régeteg tartalmazó hálózatot mutat, amelyben az első aktív rétegben - a rejetett rétegben - három, a második aktív rétegben - jelen esetben a kimeneti rétegben - két processzáló elem található. A hálózat tehát egy többrétegű előrecsatolt hálózat(FeedForward). A súlyvektorok meghatározása gradiens alapú ellenőrzött tanuló eljárással, tehát összetartozó (x,y) tanító párok felhasználásával történik.</p>
+<p>A tanító eljárás bemutatásához vezessük be a következő jelöléseket: legyen <em>l</em> a réteg index, <em>i</em> a rétegen belüli processzáló elem (PE) indexe, <em>j</em> a PE bemeneteit megkülönböztető index - ez lesz egyben a megfelelő súlyvektor komponenseinek indexe -  ez lesz egyben a megfelelő súlyvektor komponenseinek indexe is - és <em>k</em> a diszkrét időindex.(pl. PE_i^(l) az l-edk réteg i-edik processzáló elemét jelöli, w_i^(l) (k) pedig az <em>l</em>-edik réteg, <em>i</em>-edik prcesszáló elemének súlyvektorát a <em>k</em>-adik időpillanatban és w_ij^(l) (k) ugyanezen súlyvektornak a j-edik komponensét jelöli.)</p>
+<p>A hálózat tanítását két (aktív) rétegű hálózaton mutatjuk be. A kimenet hiba:</p>
+<div class="math">
+\[\varepsilon ^2 = \varepsilon_1^2 + \varepsilon_2^2 = (y_1 - d_1)^2 + (y_2 - d_2)^2\]</div>
+<p>A súly módosításhoz a megfelelő pillanatnyi gradienseket kell kiszámítani.</p>
+<div class="math">
+\[\dfrac{\partial \varepsilon ^2}{\partial w_{ij}^{(l)}}\]</div>
+<p>A súlymódosítás tehát</p>
+<div class="math">
+\[w_i^{(2)}(k+1) = w_i^{(2)}(k) + 2\mu\varepsilon_i(k)sgm'(s_i^{(2)})x^{(2)}(k) = w_i^{(2)} + 2\mu\delta_i^{(2)}(k)x^{(2)}(k)\]</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="learning.html" title="előző fejezet">Tanulás</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Gyorskeresés</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Ok" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Szilvasi_Peter.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/pages/backpropagation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

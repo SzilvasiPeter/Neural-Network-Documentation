@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hu">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Történeti áttekintés &#8212; ANN  dokumentáció</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Tárgymutató" href="../genindex.html" />
+    <link rel="search" title="Keresés" href="../search.html" />
+    <link rel="prev" title="Welcome to ANN’s documentation!" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="torteneti-attekintes">
+<h1>Történeti áttekintés<a class="headerlink" href="#torteneti-attekintes" title="Hivatkozás erre a fejezetcímre">¶</a></h1>
+<div class="section" id="bevezetes">
+<h2>Bevezetés<a class="headerlink" href="#bevezetes" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<p>A neurális hálózatok olyan számítási feladatok megoldására létrejött párhuzamos feldolgozást végző, adaptív eszközök, melyek eredete a biológiai rendszerektől származtatható.(ide a számtani adatok: gyorsaság összehasonlitása az emberi és a gépi neuronok átviteli sebesesége-&gt;emberi:kémiai, gépi:elektromos)</p>
+<div class="section" id="kezdet">
+<h3>Kezdet<a class="headerlink" href="#kezdet" title="Hivatkozás erre a fejezetcímre">¶</a></h3>
+<p>Az alapgondolat, hogy a természetes neurális hálók mintájára hozzunk létre mesterséges számító rendszereket meglehetősen régi. A kezdeti lökést természetesen az idegsejtekkel kapcsolatos kutatási eredmények adták. Jónéhány évnek el kellet azonban telnie addig, amíg az első mesterséges neuron, majd a neurális hálozat megjelent.</p>
+</div>
+<div class="section" id="neuron-modell">
+<h3>Neuron modell<a class="headerlink" href="#neuron-modell" title="Hivatkozás erre a fejezetcímre">¶</a></h3>
+<p>Az egyszerű neuron modell valójában nem más, mint egy többdimenziós bemenet komponenseinek súlyozott összegét meghatározó, tehát lineáris kombinációt megvalósító hálózat, amelyet egy nem lineáris leképezés követ. A kivánt müködés megfelelő konvergens iteratív eljárással, tanuló eljárással érhető el. A tanulás itt egyszerűen azt jelenti, hogy a kívánt működést reprezentáló, összetartozó be- és kimeneti értékek alapján a hálózat maga alakítja ki a megfelelő átvitelét, illetve a hálózat bemenetére kerülő adatokban önmaga probál valamilyen hasonlóságot felfedni.
+Mintegy húsz évet kellet várni ahhoz, hogy ismét megélénküljön a neurális hálózatok iránti érdeklődés. Az érdeklődés felkeltésében a legfontosabb esemény talán az ún. Hopfield-háló(KÉP) publikálása volt, amely optimalizálási feladatokra volt képes. További jelentős eredmény az ún. hibavisszaterjesztéses (backpropagation)(KÉP) algoritmus &#8220;felfedezése&#8221;, amely hatékonynak bizonyult a többrétegű hálózatok tanításánál. Az algoritmust 1986-ban publikálta a RumelHart, Hintor és Williams szerzőhármas és egyben be is mutatták az algoritmus hatékonyságát.</p>
+</div>
+<div class="section" id="kibontakozas">
+<h3>Kibontakozás<a class="headerlink" href="#kibontakozas" title="Hivatkozás erre a fejezetcímre">¶</a></h3>
+<p>A nyolcvanas évek második fele óta a neurális hálózatok kutatása reneszánszát éli. A neurális hálózatokat időnként úgy állítják be, mint bármilyen feladatra alkalmazható univerzális eszközöket, és olyan esetekben is alkalmazzák, vagy javasolják alkalmazni, amikor más, hagyományos eljárások hasznosabbnak bizonyulnak.</p>
+</div>
+<div class="section" id="alkalmazasi-teruletei">
+<h3>Alkalmazási területei<a class="headerlink" href="#alkalmazasi-teruletei" title="Hivatkozás erre a fejezetcímre">¶</a></h3>
+<p>Az alkalmazási területei a különböző felismerési problémák, vagy az optimalizáló feladatok. Hasonlóan fontos alkalmazási terület a nemlineáris rendszerek vizsgálata, identifikációja, szabályozása. A neurális hálozatok tudománya egy fejlődésben lévő tudomány. Az újabban megélénkült kutatások eredményeképpen most már nemcsak sikerült bemutatni, hogy a neurális hálózatok komplex feladatok megoldásában igen hasznosnak bizonyulnak, hanem az ehhez szükséges elméleti alapokat is sikerült kidolgozni. Bizonyítható, hogy megfelelő tanulási algoritmussal, adott felépítésű hálózat alkalmassá tehető adatokban meglévő hasonlóságok felismerésére, osztályozási feladatok megoldásásra.</p>
+</div>
+<div class="section" id="kutatasok">
+<h3>Kutatások<a class="headerlink" href="#kutatasok" title="Hivatkozás erre a fejezetcímre">¶</a></h3>
+<p>A neurális hálózatok kutatása számos pontos kapcsolódik az egyéb, lineáris és nemlineáris rendszerekkel foglalkozó kutatásokhoz. Így különösen sok kapcsolódási pont találtható a neurális hálózatok és az adaptív rendszerek között. Hasonlóan erős a kapcsolat a neurális információfeldolgozás és a parallel feldolhozás között. És az is természetes, hogy a neurális hálózatok kutatása kezdetektől fogva szoros kapcsolatban áll bizonyos biológiai kutatásokkal, első sorban az idegrendszeri- és agykutatásokkal, hiszen a mesterséges neurális hálók számos eredménye biológiai kutatásokon, megfigyeléseken alapul. Az intenzív kutatás következtében azonban várható, hogy egyre több kérdésre születik egzakt válasz, lehetővé téve így, hogy egyre pontosabban meghatározzák azon feladatok körét, ahol lehet és érdemes is neurális hálózatokat alkalmazni.</p>
+</div>
+</div>
+<div class="section" id="fejlodesi-iranyai-vegere-vagy-az-elejere">
+<h2>Fejlődési irányai(Végére vagy az elejére)<a class="headerlink" href="#fejlodesi-iranyai-vegere-vagy-az-elejere" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<p>A neuronhálók meglehetősen univerzális feladatmegoldó eszközök. Összetett, bonyolult gyakorlati problémák megoldásában azonban legtöbbszor önmagukban nem alkalmazhatók, inkább csak részfeladato megoldásában jelentenek nagy segítséget. A neurális számítástechnika fejlődésében több irány figyelhető meg. Az egyik fő irány a témakör minél egzaktabb matematikai megalapozásra törekszik. Ez elsősorban matematikai kutatásokat igényel, a hálózatok képességeinek minél pontosabb meghatározását célozza.
+A fejlödés másik fő vonala arra írányul, hogy az egyre komplexebb feladatok megoldásához nyerjünk eszközöket. Ezen eszközök között a neurális hálózatok is megjelennek, de nem kizárólagosan, hanem kombinálva más számítási megközelítésekkel. A neuronhálók tudás alapú rendszerek, hiszen képességeiket adatokból tanulás utján nyerik. Egy feladat megoldásánál nem csak adatok formájában áll rendelkezésünkre a tudás. A más módon pl. szabályok formájában álló tudás felhasználása alapvetően fontos lehet.
+A továbbfejlődés egy lehetséges útja a moduláris neurális hálók létrehozás és alkalmazása. A moduláris megközelítés alapgondolata, hogy a feladatot hálóval oldjuk meg, ahol az egyes hálók vagy segítik egymás vagy versenyeznek egymással. Így mind kooperatív, mind kompetetív moduláris rendszerek létrehozhazók.
+A hibrid intelligens rendszerek között kell megemlíteni a neurofuzzy rendszereket is. A neurális hálózatok az adaptációs képesség tekintetében, az adatokból való tanulásban, a fuzzy rendszerek a szimbolikus tudás kezelésében mutatnak egyértelmű előnyöket. A két megközelítés előnyeit ötvöző neurofuzzy rendszerek leginkább a rendszermodellezés és szabályozás területén terjedtek el.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="előző fejezet">Welcome to ANN&#8217;s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Gyorskeresés</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Ok" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Szilvasi_Peter.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/pages/overview.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
