@@ -8,7 +8,7 @@ Egy processzáló elem szigmoid kimeneti nemlinearitással
 			:width: 350px
 	 		:align: center
 	 		:height: 200px
-	 		:alt: Generation
+	 		:alt: Sigmoid
 
 A hálózat felépítését az fenti ábrán láthatjuk. A súlymódosítást az LMS algoritmussal végezzük, a hibát a teljes hálózat kimenetén értelmezzük.
 
@@ -34,7 +34,7 @@ A backpropagation algoritmus
 			:width: 350px
 	 		:align: center
 	 		:height: 200px
-	 		:alt: Generation
+	 		:alt: Backpropagation
 
 A többrétegű hálózatok felépítése a fenti ábrán követhető. Az ábra egy két aktív régeteg tartalmazó hálózatot mutat, amelyben az első aktív rétegben - a rejetett rétegben - három, a második aktív rétegben - jelen esetben a kimeneti rétegben - két processzáló elem található. A hálózat tehát egy többrétegű előrecsatolt hálózat(FeedForward). A súlyvektorok meghatározása gradiens alapú ellenőrzött tanuló eljárással, tehát összetartozó (x,y) tanító párok felhasználásával történik.
 
@@ -137,4 +137,4 @@ Túltanítás (overtraining) akkor lép fel, ha a tanító készlet mintáira m�
 			:width: 350px
 	 		:align: center
 	 		:height: 200px
-	 		:alt: Generation
+	 		:alt: OverTraining

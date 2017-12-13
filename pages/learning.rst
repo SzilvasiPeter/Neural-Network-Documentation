@@ -128,7 +128,7 @@ Regularizáció: A regularizáció eljárás során a kritériumfüggvény egy �
 			:width: 400px
 	 		:align: center
 	 		:height: 200px
-	 		:alt: Generation
+	 		:alt: Reproduction
 
 		* mutáció: Egy string egy bitje véletlenszerűen megváltozik. az új bitkombinációk a megoldás tér olyan területeit is feltérképezhetik, amelyekre az eddigi populációk nem terjedtek ki.
 
@@ -166,7 +166,7 @@ A hálózat képes önmaga módosítására, emiatt szokás önszervező hálóz
 			:width: 300px
 	 		:align: center
 	 		:height: 200px
-	 		:alt: Generation
+	 		:alt: Competitiv
 	
 	A tényleges tanulás, vagyis a súlyvektor módosítása csak a győztes processzáló elem súlyvektorát módosítjuk.
 
@@ -182,4 +182,4 @@ A megfelelő viselkedést biztosító hálózat kialakítása *elméleti út*\ o
 			:width: 350px
 	 		:align: center
 	 		:height: 200px
-	 		:alt: Generation
+	 		:alt: Hopfield
