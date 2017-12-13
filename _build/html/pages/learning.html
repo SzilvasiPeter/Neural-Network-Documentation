@@ -61,8 +61,9 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <li>Tanitóval történő tanítás</li>
 </ol>
 <p>A tanítandó rendszer változtatása összetartozó be és kimeneti tanító mintapárok felhasználásával történik (modell-illesztési feladat).</p>
-<p><strong>Kép</strong> (IsmeretlenRendzser[g(u,n)]-&gt;KritFgv[C(d,y)]-&gt;ParamMódosító-&gt;Modell[g^(w,u)]-&gt;KritFgv)Füzetbe</p>
-<p>Magyarázatok:IsmeretlenR.,KritFgv, ParamMód., Modell</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/learning.jpg"><img alt="Learning" class="align-center" src="../_images/learning.jpg" style="width: 450px; height: 270px;" /></a>
+</div></blockquote>
 <p><strong>Kritériumfüggvények</strong>:</p>
 <p>Neurális hálózatoknál a súlytényezők megfelelő kialakítása a tanítás célja. Jelölések: w* optimális, w a tényleges súlyvektor, hálózat jósága: C(w*, w). A kritériumfügvények a hálózat kimenetének és kivánt válasznak (d) valamilyen összehasonlítását végzik:</p>
 <blockquote>
@@ -105,9 +106,14 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <ul>
 <li><dl class="first docutils">
 <dt>LMS algoritmus:</dt>
-<dd><ul class="first last simple">
+<dd><ul class="first simple">
 <li>Az átlagos négyzetes hiba helyett a pillanatnyi négyzetes hibából indulunk ki.</li>
-<li><strong>Kibővíteni(kis leírással, jellemzőkkel, 1-(2) képlet, Kép</strong></li>
+<li>A pillanatnyi gradiens vektorral a „legmeredekebb lejtő” módszert alkalmazva a paraméter változtatás összefüggésére a következőt kapjuk:</li>
+</ul>
+<div class="math">
+\[w(k+1)=w(k)-\mu\triangledown C(k)\]</div>
+<ul class="last simple">
+<li>Az LMS eljárás legnagyobb előnye az eddig látott eljárásokkal szemben, hogy alkalmazásához a mintapontokon kívül másra nincs szükség, továbbá, hogy nagyon egyszerűen megvalósítható.</li>
 </ul>
 </dd>
 </dl>
@@ -128,7 +134,8 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 </dl>
 </li>
 </ul>
-<p class="last"><strong>képlet</strong></p>
+<div class="last math">
+\[w(k+1)=w(k)+\alpha \varepsilon (k)x(k)\]</div>
 </dd>
 </dl>
 </li>
@@ -142,7 +149,7 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 </li>
 <li><dl class="first docutils">
 <dt>Sztochasztikus szélsőérték-kereső eljárások</dt>
-<dd><p class="first">A kedvező konvergencia-sebességet általában csak <strong>kvadratikus(!MAGYARÁZAT!)</strong> hibafelület mellet biztosítják, továbbá a minimumhely elérése csak akkor biztos, ha a felületen nincsenek lokális minimumok (unmodális felület).</p>
+<dd><p class="first">A kedvező konvergencia-sebességet általában csak kvadratikus hibafelület mellet biztosítják, továbbá a minimumhely elérése csak akkor biztos, ha a felületen nincsenek lokális minimumok (unmodális felület).</p>
 <p>A lokális minimumok lehetősége fennállhatnak ez konvergencia szempontjából kedvezőtlen. A lokális minimumhelyekben való bennragadás elkerülésére sztochasztikus gradiens eljárásokat dolgoztak ki.</p>
 <p>Jellemzője hogy a kritériumfelületen valamilyen valószínűséggel a felfelé mozgást is megengedik, lehetővé téve a lokális minimumból való kiszabadulást. Gyakorlatban a hálózat súlyaihoz egy valószínűségi változó valamely aktuális értékét adjuk. A zaj felhasználása az egyik módja a súlyok véletlenszerű „megrázása”.</p>
 <div class="math">
@@ -156,7 +163,8 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 </li>
 <li><p class="first">Genetikus algoritmusok</p>
 <blockquote>
-<div><p>A természetes szelekciót utánozzák. A genetikus algoritmusok egyszerre több pontokban értékelik a kritériumfelületet. A megoldások egy adott lépésben érvényes halmazát <em>populáció</em>nak nevezik. Az egymást követő populációkat generációnak nevezik, tehát az algoritmus az egymást követő generációk során egyre jobb megoldás-halmazokat állít elő.**ÁBRA**</p>
+<div><p>A természetes szelekciót utánozzák. A genetikus algoritmusok egyszerre több pontokban értékelik a kritériumfelületet. A megoldások egy adott lépésben érvényes halmazát <em>populáció</em>nak nevezik. Az egymást követő populációkat generációnak nevezik, tehát az algoritmus az egymást követő generációk során egyre jobb megoldás-halmazokat állít elő.</p>
+<a class="reference internal image-reference" href="../_images/generation.png"><img alt="Generation" class="align-center" src="../_images/generation.png" style="width: 400px; height: 200px;" /></a>
 <p>A populáció elemeinek tulajdonságát <em>kromoszómák</em>kal reprezentálják. A kromoszómák jelenesetben olyan bitfüzérek, amelyekben minden egyes bit egy tulajdonságot reprezentál (1:tulajdonsággal rendelkezik, 0:tulajdonság hiánya).</p>
 <p>Fő jellemzői:</p>
 <ul class="simple">
@@ -169,7 +177,10 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <p>A generációk közötti átmeneti operátorok:</p>
 <ul class="simple">
 <li>reprodukció: Egy string a következő generáció részeként is megjelenik. Bekövetkezése a string jóságával kapcsolatos.</li>
-<li>keresztezés: Két kromoszóma tulajdonságaik keresztezése révén hoznak létre új tulajdonságot. <strong>ÁBRA</strong></li>
+<li>keresztezés: Két kromoszóma tulajdonságaik keresztezése révén hoznak létre új tulajdonságot.</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/reproduction.png"><img alt="Generation" class="align-center" src="../_images/reproduction.png" style="width: 400px; height: 200px;" /></a>
+<ul class="simple">
 <li>mutáció: Egy string egy bitje véletlenszerűen megváltozik. az új bitkombinációk a megoldás tér olyan területeit is feltérképezhetik, amelyekre az eddigi populációk nem terjedtek ki.</li>
 </ul>
 </div></blockquote>
@@ -210,7 +221,7 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 </ul>
 </dd>
 </dl>
-<p><strong>Ábra</strong></p>
+<a class="reference internal image-reference" href="../_images/competitiv_learning.png"><img alt="Generation" class="align-center" src="../_images/competitiv_learning.png" style="width: 300px; height: 200px;" /></a>
 <p class="last">A tényleges tanulás, vagyis a súlyvektor módosítása csak a győztes processzáló elem súlyvektorát módosítjuk.</p>
 </dd>
 </dl>
@@ -220,11 +231,12 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <div class="section" id="analitikus-tanulas">
 <h2>Analitikus tanulás<a class="headerlink" href="#analitikus-tanulas" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
 <p>A megfelelő viselkedést biztosító hálózat kialakítása <em>elméleti út</em>on, a feladatból határozható meg. Valójában ebben az esetben nem is beszélhetünk tanulásról, hiszen a <em>hálózat</em> megfelelő <em>kialakítása analitikus módszerekkel</em> végezhető el. Azokat a módszereket, amikor valamilyen energiafüggvény felírása képezi a súlyok meghatározásának alapját analitikus tanulásnak nevezzük.</p>
-<ul class="simple">
+<ul>
 <li><dl class="first docutils">
 <dt>Hopfield hálózat</dt>
-<dd>A modell a legegyszerűbb neurális hálózat, amely asszociatív memóriát valósít meg. A hálózatot leggyakrabban autoasszociatív feladatok megoldására használjuk. Ilyenkor a memóriában mintákat, gyakran digitalizált képeket tárolunk. A neurális hálózattól azt várjuk, hogy a tárolt információ zajos, torzított, esetleg hiányos változatának megmutatásakor az eredeti mintára asszociáljon.
-<strong>Ábra</strong></dd>
+<dd><p class="first">A modell a legegyszerűbb neurális hálózat, amely asszociatív memóriát valósít meg. A hálózatot leggyakrabban autoasszociatív feladatok megoldására használjuk. Ilyenkor a memóriában mintákat, gyakran digitalizált képeket tárolunk. A neurális hálózattól azt várjuk, hogy a tárolt információ zajos, torzított, esetleg hiányos változatának megmutatásakor az eredeti mintára asszociáljon.</p>
+<a class="last reference internal image-reference" href="../_images/hopfield_net.png"><img alt="Generation" class="align-center" src="../_images/hopfield_net.png" style="width: 350px; height: 200px;" /></a>
+</dd>
 </dl>
 </li>
 </ul>

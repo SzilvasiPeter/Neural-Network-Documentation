@@ -14,7 +14,7 @@ Felépítés
 * felépítés
 	* neuron: Több bemenetű, egy kimenetű eszköz. A *bemenet*\ i értékekből a hálózat az *aktiváló függvény* alkalmazásával hozza létre a *kimeneti* értéket.
 
-		.. image:: C:/Users/szilv/ANN/neuron.png
+		.. image:: images/neuron.png
 		    :width: 300px
 		    :align: center
 		    :height: 150px
@@ -26,12 +26,12 @@ Felépítés
 		 * tangens hiberbolikus fgv						
 		 * logisztikus fgv
 
-	 	.. image:: C:/Users/szilv/ANN/activation_functions.png
+	 	.. image:: images/activation_functions.png
 	 		:width: 300px
 	 		:align: center
 	 		:height: 150px
 	 		:alt: Activation Function						
-	* bemenetek (nem feltétlen kell)
+	* bemenetek
 		* gerjesztő
 		* gátló
 
@@ -46,7 +46,7 @@ Háromféle neuront különböztethetünk meg:
 
 Réteg: A neuronokat sok esetben rétegekbe (layer) szervezzük, ahol egy rétegbe hasonló típusú neuronok tartoznak(kapcsolataik is hasonlóak). Ennek megfelelően beszélhetünk bemeneti(*input layer*\ ), rejtett(*hidden layer*\ ) és kimeneti rétegről(*output layer*\ )
 
-	.. image:: C:/Users/szilv/ANN/hidden_layer.jpg
+	.. image:: images/hidden_layer.jpg
 		:width: 300px
 		:align: center
 		:height: 150px

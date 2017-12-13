@@ -18,9 +18,12 @@ Ha *nem ismerjük* pontosan a *választ*, csak azt hogy *helyes vagy hibás*, ak
 
 A tanítandó rendszer változtatása összetartozó be és kimeneti tanító mintapárok felhasználásával történik (modell-illesztési feladat).
 
-**Kép** (IsmeretlenRendzser[g(u,n)]->KritFgv[C(d,y)]->ParamMódosító->Modell[g^(w,u)]->KritFgv)Füzetbe
+	.. image:: images/learning.jpg
+		    :width: 450px
+		    :align: center
+		    :height: 270px
+		    :alt: Learning
 
-Magyarázatok:IsmeretlenR.,KritFgv, ParamMód., Modell
 
 **Kritériumfüggvények**:
 
@@ -57,7 +60,13 @@ Regularizáció: A regularizáció eljárás során a kritériumfüggvény egy �
 
 	* LMS algoritmus:
 		* Az átlagos négyzetes hiba helyett a pillanatnyi négyzetes hibából indulunk ki.
-		* **Kibővíteni(kis leírással, jellemzőkkel, 1-(2) képlet, Kép**
+		* A pillanatnyi gradiens vektorral a "legmeredekebb lejtő" módszert alkalmazva a paraméter változtatás összefüggésére a következőt kapjuk:
+
+		.. math::
+			w(k+1)=w(k)-\mu\triangledown C(k)
+
+		* Az LMS eljárás legnagyobb előnye az eddig látott eljárásokkal szemben, hogy alkalmazásához a mintapontokon kívül másra nincs szükség, továbbá, hogy nagyon egyszerűen megvalósítható.
+
 	* Perceptron tanulás
 		* LMS eljáráshoz hasonló módszer, alapvetően osztályozási feladatok megoldására szolgál
 		* A tanitandó hálózatnak bináris (+1, -1) kimenetei vannak
@@ -66,14 +75,15 @@ Regularizáció: A regularizáció eljárás során a kritériumfüggvény egy �
 			* Az iteráció leáll, ha a tanítóminták szétválasztása befejeződött
 			* A paraméterek nagyságát nem korlátozza
 		
-		**képlet**
+		.. math::
+			w(k+1)=w(k)+\alpha \varepsilon (k)x(k)
 
 2. Megerősitő tanulás
 
 	Számos esetben nem rendelkezünk az adott bemenetekhez tartozó kivánt válaszokkal. Mindössze annyit tudunk, hogy adott bemenetekre a hálózat tényleges válasza helyes vagy hibás. A tanulás eljárása során csak arra elegendő, hogy eldöntsük: szükség van-e a hálózat módosítására vagy sem, de a módosítás mértékenek meghatározására már nem elegendő. A hiba mértéke és a kritériumfüggvény gradiense nem áll rendelkezésünkre.
 
 3. Sztochasztikus szélsőérték-kereső eljárások
-	A kedvező konvergencia-sebességet általában csak **kvadratikus(!MAGYARÁZAT!)** hibafelület mellet biztosítják, továbbá a minimumhely elérése csak akkor biztos, ha a felületen nincsenek lokális minimumok (unmodális felület).
+	A kedvező konvergencia-sebességet általában csak kvadratikus hibafelület mellet biztosítják, továbbá a minimumhely elérése csak akkor biztos, ha a felületen nincsenek lokális minimumok (unmodális felület).
 	
 	A lokális minimumok lehetősége fennállhatnak ez konvergencia szempontjából kedvezőtlen. A lokális minimumhelyekben való bennragadás elkerülésére sztochasztikus gradiens eljárásokat dolgoztak ki.
 
@@ -90,7 +100,13 @@ Regularizáció: A regularizáció eljárás során a kritériumfüggvény egy �
 		A véletlen keresési módszer nem feltétlenül konvergálnak a globális minimumhoz.
 	* Genetikus algoritmusok
 
-		A természetes szelekciót utánozzák. A genetikus algoritmusok egyszerre több pontokban értékelik a kritériumfelületet. A megoldások egy adott lépésben érvényes halmazát *populáció*\ nak nevezik. Az egymást követő populációkat generációnak nevezik, tehát az algoritmus az egymást követő generációk során egyre jobb megoldás-halmazokat állít elő.**ÁBRA**
+		A természetes szelekciót utánozzák. A genetikus algoritmusok egyszerre több pontokban értékelik a kritériumfelületet. A megoldások egy adott lépésben érvényes halmazát *populáció*\ nak nevezik. Az egymást követő populációkat generációnak nevezik, tehát az algoritmus az egymást követő generációk során egyre jobb megoldás-halmazokat állít elő.
+
+		.. image:: images/generation.png
+			:width: 400px
+	 		:align: center
+	 		:height: 200px
+	 		:alt: Generation
 
 		A populáció elemeinek tulajdonságát *kromoszómák*\ kal reprezentálják. A kromoszómák jelenesetben olyan bitfüzérek, amelyekben minden egyes bit egy tulajdonságot reprezentál (1:tulajdonsággal rendelkezik, 0:tulajdonság hiánya).
 
@@ -106,7 +122,14 @@ Regularizáció: A regularizáció eljárás során a kritériumfüggvény egy �
 		A generációk közötti átmeneti operátorok:
 
 		* reprodukció: Egy string a következő generáció részeként is megjelenik. Bekövetkezése a string jóságával kapcsolatos.
-		* keresztezés: Két kromoszóma tulajdonságaik keresztezése révén hoznak létre új tulajdonságot. **ÁBRA**
+		* keresztezés: Két kromoszóma tulajdonságaik keresztezése révén hoznak létre új tulajdonságot.
+
+		.. image:: images/reproduction.png
+			:width: 400px
+	 		:align: center
+	 		:height: 200px
+	 		:alt: Generation
+
 		* mutáció: Egy string egy bitje véletlenszerűen megváltozik. az új bitkombinációk a megoldás tér olyan területeit is feltérképezhetik, amelyekre az eddigi populációk nem terjedtek ki.
 
 Nemellenőrzött tanulás (unsupervised learning)
@@ -139,7 +162,11 @@ A hálózat képes önmaga módosítására, emiatt szokás önszervező hálóz
 		* Processzáló elemekből álló kimeneteket meghatározzuk a súlyvektorának felhasználásával.
 		* A győztes kiválasztása.
 
-	**Ábra**
+	.. image:: images/competitiv_learning.png
+			:width: 300px
+	 		:align: center
+	 		:height: 200px
+	 		:alt: Generation
 	
 	A tényleges tanulás, vagyis a súlyvektor módosítása csak a győztes processzáló elem súlyvektorát módosítjuk.
 
@@ -150,4 +177,9 @@ A megfelelő viselkedést biztosító hálózat kialakítása *elméleti út*\ o
 
 * Hopfield hálózat
 	A modell a legegyszerűbb neurális hálózat, amely asszociatív memóriát valósít meg. A hálózatot leggyakrabban autoasszociatív feladatok megoldására használjuk. Ilyenkor a memóriában mintákat, gyakran digitalizált képeket tárolunk. A neurális hálózattól azt várjuk, hogy a tárolt információ zajos, torzított, esetleg hiányos változatának megmutatásakor az eredeti mintára asszociáljon.
-	**Ábra** 
+	
+	.. image:: images/hopfield_net.png
+			:width: 350px
+	 		:align: center
+	 		:height: 200px
+	 		:alt: Generation

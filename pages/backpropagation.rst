@@ -4,7 +4,12 @@ Backpropagation többrétegű hálózatnál (MLP)
 Egy processzáló elem szigmoid kimeneti nemlinearitással
 -------------------------------------------------------
 
-**ÁBRA**
+	.. image:: images/nonlinear_sigmoid.png
+			:width: 350px
+	 		:align: center
+	 		:height: 200px
+	 		:alt: Generation
+
 A hálózat felépítését az fenti ábrán láthatjuk. A súlymódosítást az LMS algoritmussal végezzük, a hibát a teljes hálózat kimenetén értelmezzük.
 
 .. math::
@@ -25,7 +30,11 @@ A logisztikus függvény, ill. deriváltja:
 A backpropagation algoritmus
 ----------------------------
 
-**Ábra**
+	.. image:: images/backpropagation.png
+			:width: 350px
+	 		:align: center
+	 		:height: 200px
+	 		:alt: Generation
 
 A többrétegű hálózatok felépítése a fenti ábrán követhető. Az ábra egy két aktív régeteg tartalmazó hálózatot mutat, amelyben az első aktív rétegben - a rejetett rétegben - három, a második aktív rétegben - jelen esetben a kimeneti rétegben - két processzáló elem található. A hálózat tehát egy többrétegű előrecsatolt hálózat(FeedForward). A súlyvektorok meghatározása gradiens alapú ellenőrzött tanuló eljárással, tehát összetartozó (x,y) tanító párok felhasználásával történik.
 
@@ -123,4 +132,9 @@ A tanulás konvergenciájának sebessége növelhető adaptív \mu választássa
 További kérdés, hogy egyáltalán **hogyan minősitsünk egy hálózatot**. Adott tanító készlet mellett szükségünk van egy ún. minősítő, kiértékelő mintakészletre (validation set) is. A hálózat tanítására csaka  tanítókészlet mintáit használjuk, míg az adott számú tanító lépésben átesett hálózat minősítése a minősítő készletre adott válaszok alapján lehetséges. Amennyiben csak a tanító pontokra adott válaszok alapján értékelünk, túltaníthatjuk a hálózatot.
 
 Túltanítás (overtraining) akkor lép fel, ha a tanító készlet mintáira már nagyon kis hibájú válaszokat kapunk, miközben a kiértékelő készletre egyre nagyobb hibával válaszol a hálózat. Ez azért következhet be, mert a hálózat válaszai túlzottan illeszkednek a véges számú tanító pont által megszabott lekéezéshez, miközben a közbenső válaszok jelentősen eltérhetnek a megfelelő kivánt válaszoktól.
-**ÁBRA**
+
+	.. image:: images/overtraining.png
+			:width: 350px
+	 		:align: center
+	 		:height: 200px
+	 		:alt: Generation

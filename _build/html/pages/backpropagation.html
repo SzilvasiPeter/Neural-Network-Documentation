@@ -45,8 +45,10 @@
 <h1>Backpropagation többrétegű hálózatnál (MLP)<a class="headerlink" href="#backpropagation-tobbretegu-halozatnal-mlp" title="Hivatkozás erre a fejezetcímre">¶</a></h1>
 <div class="section" id="egy-processzalo-elem-szigmoid-kimeneti-nemlinearitassal">
 <h2>Egy processzáló elem szigmoid kimeneti nemlinearitással<a class="headerlink" href="#egy-processzalo-elem-szigmoid-kimeneti-nemlinearitassal" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
-<p><strong>ÁBRA</strong>
-A hálózat felépítését az fenti ábrán láthatjuk. A súlymódosítást az LMS algoritmussal végezzük, a hibát a teljes hálózat kimenetén értelmezzük.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/nonlinear_sigmoid.png"><img alt="Generation" class="align-center" src="../_images/nonlinear_sigmoid.png" style="width: 350px; height: 200px;" /></a>
+</div></blockquote>
+<p>A hálózat felépítését az fenti ábrán láthatjuk. A súlymódosítást az LMS algoritmussal végezzük, a hibát a teljes hálózat kimenetén értelmezzük.</p>
 <div class="math">
 \[\varepsilon (k) = d(k) - y(k) = d(k) - sgm(s(k)) = d(k) - sgm(w^T (k)x(k))\]</div>
 <p>A pillanatnyi gradiens tehát:</p>
@@ -59,7 +61,9 @@ A hálózat felépítését az fenti ábrán láthatjuk. A súlymódosítást az
 </div>
 <div class="section" id="a-backpropagation-algoritmus">
 <h2>A backpropagation algoritmus<a class="headerlink" href="#a-backpropagation-algoritmus" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
-<p><strong>Ábra</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/backpropagation.png"><img alt="Generation" class="align-center" src="../_images/backpropagation.png" style="width: 350px; height: 200px;" /></a>
+</div></blockquote>
 <p>A többrétegű hálózatok felépítése a fenti ábrán követhető. Az ábra egy két aktív régeteg tartalmazó hálózatot mutat, amelyben az első aktív rétegben - a rejetett rétegben - három, a második aktív rétegben - jelen esetben a kimeneti rétegben - két processzáló elem található. A hálózat tehát egy többrétegű előrecsatolt hálózat(FeedForward). A súlyvektorok meghatározása gradiens alapú ellenőrzött tanuló eljárással, tehát összetartozó (x,y) tanító párok felhasználásával történik.</p>
 <p>A tanító eljárás bemutatásához vezessük be a következő jelöléseket: legyen <em>l</em> a réteg index, <em>i</em> a rétegen belüli processzáló elem (PE) indexe, <em>j</em> a PE bemeneteit megkülönböztető index - ez lesz egyben a megfelelő súlyvektor komponenseinek indexe -  ez lesz egyben a megfelelő súlyvektor komponenseinek indexe is - és <em>k</em> a diszkrét időindex.(pl. PE_i^(l) az l-edk réteg i-edik processzáló elemét jelöli, w_i^(l) (k) pedig az <em>l</em>-edik réteg, <em>i</em>-edik prcesszáló elemének súlyvektorát a <em>k</em>-adik időpillanatban és w_ij^(l) (k) ugyanezen súlyvektornak a j-edik komponensét jelöli.)</p>
 <p>A hálózat tanítását két (aktív) rétegű hálózaton mutatjuk be. A kimenet hiba:</p>
@@ -127,8 +131,10 @@ A hálózat felépítését az fenti ábrán láthatjuk. A súlymódosítást az
 <p><strong>A tanító lépések számának meghatározása</strong>. Általában előre nem határozható meg a hálózat hibájának alakulása a tanító lépések függvényében, így azt sem lehet megmondani, hogy megfelelő kis hiba eléréséhe hány tanító lépés szükséges. A hálózat „jóságának” kiértékelése amúgy is számos elméleti ésé gyakorlati problémát vet fel.</p>
 <p><strong>A tanító pontok felhasználása</strong>. További lehetőségeket jelent, hogy a súlymódosításokat pontonként, vagy kötegelt (batch) eljárás szerint, csak a teljes tanító készlet (epoch) felhasználása után végezzük. Ezek az eljárások a súlykorrekció gyakoriságában térnek el. A batch eljárásnál a teljes tanító készlet összes mintáját ráadva a hálózatra minden esetben kiszámítjuk a hibát. A mintánkénti tanítás mintegy zajt visz a rendszerbe.</p>
 <p>További kérdés, hogy egyáltalán <strong>hogyan minősitsünk egy hálózatot</strong>. Adott tanító készlet mellett szükségünk van egy ún. minősítő, kiértékelő mintakészletre (validation set) is. A hálózat tanítására csaka  tanítókészlet mintáit használjuk, míg az adott számú tanító lépésben átesett hálózat minősítése a minősítő készletre adott válaszok alapján lehetséges. Amennyiben csak a tanító pontokra adott válaszok alapján értékelünk, túltaníthatjuk a hálózatot.</p>
-<p>Túltanítás (overtraining) akkor lép fel, ha a tanító készlet mintáira már nagyon kis hibájú válaszokat kapunk, miközben a kiértékelő készletre egyre nagyobb hibával válaszol a hálózat. Ez azért következhet be, mert a hálózat válaszai túlzottan illeszkednek a véges számú tanító pont által megszabott lekéezéshez, miközben a közbenső válaszok jelentősen eltérhetnek a megfelelő kivánt válaszoktól.
-<strong>ÁBRA</strong></p>
+<p>Túltanítás (overtraining) akkor lép fel, ha a tanító készlet mintáira már nagyon kis hibájú válaszokat kapunk, miközben a kiértékelő készletre egyre nagyobb hibával válaszol a hálózat. Ez azért következhet be, mert a hálózat válaszai túlzottan illeszkednek a véges számú tanító pont által megszabott lekéezéshez, miközben a közbenső válaszok jelentősen eltérhetnek a megfelelő kivánt válaszoktól.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/overtraining.png"><img alt="Generation" class="align-center" src="../_images/overtraining.png" style="width: 350px; height: 200px;" /></a>
+</div></blockquote>
 </div>
 </div>
 
