@@ -45,7 +45,7 @@
   <div class="section" id="tanulas">
 <h1>Tanulás<a class="headerlink" href="#tanulas" title="Hivatkozás erre a fejezetcímre">¶</a></h1>
 <p>Neurális hálózatok egyik legfőbb jellemzője az <em>adaptáció</em>s, tanulási képesség. Az a tulajdonság, hogy <em>viselkedésüket</em> valamely cél elérése érdekében <em>módosítani képesek</em>. <em>Neurális hálózat</em>okban a tanulás egyszerűen a rendszer valamilyen <em>képesség</em>ének <em>javítás</em>át jelenti. <strong>Például</strong> olyan paramétereket keresünk, amely mellet egy hálózat adott függvénynél minél jobb approximációjára lesz képes.
-Neurális hálózatkoban a tanulás alábbi főbb formái:</p>
+Neurális hálózattokban a tanulás alábbi főbb formái:</p>
 <blockquote>
 <div><ul class="simple">
 <li>tanulás tanítóval, <em>ellenőrzött</em> vagy felügyelt <em>tanulás</em></li>
@@ -55,7 +55,7 @@ Neurális hálózatkoban a tanulás alábbi főbb formái:</p>
 </div></blockquote>
 <div class="section" id="ellenorzott-tanulas-supervised-learning">
 <h2>Ellenőrzött tanulás (supervised learning)<a class="headerlink" href="#ellenorzott-tanulas-supervised-learning" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
-<p>Tanítás azon alapszik, hogy ismertek a hálózatnak valamely <em>bemenet</em>ekre adandó kivánt válaszai, így a hálózat tényleges <em>válasz</em>a minden esetben közvetlenül <em>összehasonlítható</em> a kívánt válasszal. Az <em>összehasonlítás eredménye</em> felhasználható a <em>hálózat</em> olyan <em>módosítás</em>ára, hogy tényleges és a kivánt <em>válaszok</em> minél inkább <em>megegyezzenek</em>.
+<p>Tanítás azon alapszik, hogy ismertek a hálózatnak valamely <em>bemenet</em>ekre adandó kívánt válaszai, így a hálózat tényleges <em>válasz</em>a minden esetben közvetlenül <em>összehasonlítható</em> a kívánt válasszal. Az <em>összehasonlítás eredménye</em> felhasználható a <em>hálózat</em> olyan <em>módosítás</em>ára, hogy tényleges és a kívánt <em>válaszok</em> minél inkább <em>megegyezzenek</em>.
 Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes vagy hibás</em>, akkor <em>megerősítő</em> (reinforcement) <em>tanulás</em>nak nevezzük.</p>
 <ol class="arabic simple">
 <li>Tanitóval történő tanítás</li>
@@ -65,7 +65,7 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <div><a class="reference internal image-reference" href="../_images/learning.jpg"><img alt="Learning" class="align-center" src="../_images/learning.jpg" style="width: 450px; height: 270px;" /></a>
 </div></blockquote>
 <p><strong>Kritériumfüggvények</strong>:</p>
-<p>Neurális hálózatoknál a súlytényezők megfelelő kialakítása a tanítás célja. Jelölések: w* optimális, w a tényleges súlyvektor, hálózat jósága: C(w*, w). A kritériumfügvények a hálózat kimenetének és kivánt válasznak (d) valamilyen összehasonlítását végzik:</p>
+<p>Neurális hálózatoknál a súlytényezők megfelelő kialakítása a tanítás célja. Jelölések: w* optimális, w a tényleges súlyvektor, hálózat jósága: C(w*, w). A kritériumfügvények a hálózat kimenetének és kívánt válasznak (d) valamilyen összehasonlítását végzik:</p>
 <blockquote>
 <div><div class="math">
 \[C = f(y, d).\]</div>
@@ -91,7 +91,7 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <p><strong>A modell</strong>:</p>
 <blockquote>
 <div><ul>
-<li><p class="first">Neurális hálózatokn alkalmazásánál az esetek döntő többségében olyan rendszerekkel állunk szembe, amelyekhez nem illeszthetők paramétereikben lineáris modellek. A szélsőérték-kereső eljárások lineáris modellek esetére vizsgálják.</p>
+<li><p class="first">Neurális hálózatokon alkalmazásánál az esetek döntő többségében olyan rendszerekkel állunk szembe, amelyekhez nem illeszthetők paramétereikben lineáris modellek. A szélsőérték-kereső eljárások lineáris modellek esetére vizsgálják.</p>
 </li>
 <li><p class="first">Gradiens alapú szélsőérték-kereső eljárások:</p>
 <blockquote>
@@ -142,30 +142,30 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 </ul>
 </div></blockquote>
 <ol class="arabic" start="2">
-<li><p class="first">Megerősitő tanulás</p>
+<li><p class="first">Megerősítő tanulás</p>
 <blockquote>
-<div><p>Számos esetben nem rendelkezünk az adott bemenetekhez tartozó kivánt válaszokkal. Mindössze annyit tudunk, hogy adott bemenetekre a hálózat tényleges válasza helyes vagy hibás. A tanulás eljárása során csak arra elegendő, hogy eldöntsük: szükség van-e a hálózat módosítására vagy sem, de a módosítás mértékenek meghatározására már nem elegendő. A hiba mértéke és a kritériumfüggvény gradiense nem áll rendelkezésünkre.</p>
+<div><p>Számos esetben nem rendelkezünk az adott bemenetekhez tartozó kívánt válaszokkal. Mindössze annyit tudunk, hogy adott bemenetekre a hálózat tényleges válasza helyes vagy hibás. A tanulás eljárása során csak arra elegendő, hogy eldöntsük: szükség van-e a hálózat módosítására vagy sem, de a módosítás mértékének meghatározására már nem elegendő. A hiba mértéke és a kritériumfüggvény gradiense nem áll rendelkezésünkre.</p>
 </div></blockquote>
 </li>
 <li><dl class="first docutils">
 <dt>Sztochasztikus szélsőérték-kereső eljárások</dt>
 <dd><p class="first">A kedvező konvergencia-sebességet általában csak kvadratikus hibafelület mellet biztosítják, továbbá a minimumhely elérése csak akkor biztos, ha a felületen nincsenek lokális minimumok (unmodális felület).</p>
 <p>A lokális minimumok lehetősége fennállhatnak ez konvergencia szempontjából kedvezőtlen. A lokális minimumhelyekben való bennragadás elkerülésére sztochasztikus gradiens eljárásokat dolgoztak ki.</p>
-<p>Jellemzője hogy a kritériumfelületen valamilyen valószínűséggel a felfelé mozgást is megengedik, lehetővé téve a lokális minimumból való kiszabadulást. Gyakorlatban a hálózat súlyaihoz egy valószínűségi változó valamely aktuális értékét adjuk. A zaj felhasználása az egyik módja a súlyok véletlenszerű „megrázása”.</p>
+<p>Jellemzője, hogy a kritériumfelületen valamilyen valószínűséggel a felfelé mozgást is megengedik, lehetővé téve a lokális minimumból való kiszabadulást. Gyakorlatban a hálózat súlyaihoz egy valószínűségi változó valamely aktuális értékét adjuk. A zaj felhasználása az egyik módja a súlyok véletlenszerű „megrázása”.</p>
 <div class="math">
-\[\C^~ (w) = C(w) + c(k) * \sum_{i=1}^{N} w_i * n_i(k)\]</div>
+\[C(w) = C(w) + c(k) * \sum_{i=1}^{N} w_i * n_i(k)\]</div>
 <ul class="last">
 <li><p class="first">Véletlen Keresés</p>
 <blockquote>
-<div><p>A paraméterek véletlenszerű megváltoztatásával probálkozunk. Ha egy próbálkozás eredményeképpen kapott paraméterhez tartozó kritériumérték az előző pontbelinél kisebb, az új pontot tekintjük a következő lépés kiinduló pontjának, ellenkező esetben a régi paramétert.</p>
+<div><p>A paraméterek véletlenszerű megváltoztatásával próbálkozunk. Ha egy próbálkozás eredményeképpen kapott paraméterhez tartozó kritériumérték az előző pontbelinél kisebb, az új pontot tekintjük a következő lépés kiinduló pontjának, ellenkező esetben a régi paramétert.</p>
 <p>A véletlen keresési módszer nem feltétlenül konvergálnak a globális minimumhoz.</p>
 </div></blockquote>
 </li>
 <li><p class="first">Genetikus algoritmusok</p>
 <blockquote>
-<div><p>A természetes szelekciót utánozzák. A genetikus algoritmusok egyszerre több pontokban értékelik a kritériumfelületet. A megoldások egy adott lépésben érvényes halmazát <em>populáció</em>nak nevezik. Az egymást követő populációkat generációnak nevezik, tehát az algoritmus az egymást követő generációk során egyre jobb megoldás-halmazokat állít elő.</p>
+<div><p>A természetes szelekciót utánozzák. A genetikus algoritmusok egyszerre több pontban értékelik a kritériumfelületet. A megoldások egy adott lépésben érvényes halmazát <em>populáció</em>nak nevezik. Az egymást követő populációkat generációnak nevezik, tehát az algoritmus az egymást követő generációk során egyre jobb megoldás-halmazokat állít elő.</p>
 <a class="reference internal image-reference" href="../_images/generation.png"><img alt="Generation" class="align-center" src="../_images/generation.png" style="width: 400px; height: 200px;" /></a>
-<p>A populáció elemeinek tulajdonságát <em>kromoszómák</em>kal reprezentálják. A kromoszómák jelenesetben olyan bitfüzérek, amelyekben minden egyes bit egy tulajdonságot reprezentál (1:tulajdonsággal rendelkezik, 0:tulajdonság hiánya).</p>
+<p>A populáció elemeinek tulajdonságát <em>kromoszómák</em>kal reprezentálják. A kromoszómák jelenesetben olyan bitfüzérek, amelyekben minden egyes bit egy tulajdonságot reprezentál (1: tulajdonsággal rendelkezik, 0: tulajdonság hiánya).</p>
 <p>Fő jellemzői:</p>
 <ul class="simple">
 <li>Egész paraméter készletekkel dolgozik</li>
@@ -179,7 +179,7 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <li>reprodukció: Egy string a következő generáció részeként is megjelenik. Bekövetkezése a string jóságával kapcsolatos.</li>
 <li>keresztezés: Két kromoszóma tulajdonságaik keresztezése révén hoznak létre új tulajdonságot.</li>
 </ul>
-<a class="reference internal image-reference" href="../_images/reproduction.png"><img alt="Generation" class="align-center" src="../_images/reproduction.png" style="width: 400px; height: 200px;" /></a>
+<a class="reference internal image-reference" href="../_images/reproduction.png"><img alt="Reproduction" class="align-center" src="../_images/reproduction.png" style="width: 400px; height: 200px;" /></a>
 <ul class="simple">
 <li>mutáció: Egy string egy bitje véletlenszerűen megváltozik. az új bitkombinációk a megoldás tér olyan területeit is feltérképezhetik, amelyekre az eddigi populációk nem terjedtek ki.</li>
 </ul>
@@ -193,26 +193,26 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 </div>
 <div class="section" id="nemellenorzott-tanulas-unsupervised-learning">
 <h2>Nemellenőrzött tanulás (unsupervised learning)<a class="headerlink" href="#nemellenorzott-tanulas-unsupervised-learning" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
-<p><em>Nem állnak rendelkezésünkre</em> adott bemenetekhez tartozó kivánt <em>válaszok</em>. Nincs vissza jelzés. Azt kell felfederítenünk, hogy van-e a hálózat bemenetére kerülő <em>adatok</em>ban <em>hasonlóság</em>, <em>korreláció</em>, <em>kategoriók</em> stb.</p>
+<p><em>Nem állnak rendelkezésünkre</em> adott bemenetekhez tartozó kívánt <em>válaszok</em>. Nincs vissza jelzés. Azt kell felderítenünk, hogy van-e a hálózat bemenetére kerülő <em>adatok</em>ban <em>hasonlóság</em>, <em>korreláció</em>, <em>kategóriák</em> stb.</p>
 <p>A hálózat képes önmaga módosítására, emiatt szokás önszervező hálózatoknak (<em>selforganizing networks</em>) is nevezni.</p>
 <ol class="arabic">
 <li><dl class="first docutils">
 <dt>Hebb tanulás</dt>
 <dd><p class="first">Két processzáló elem közötti kapcsolat erőssége (súlytényezők) a processzáló elemek aktivitásának szorzatával arányosan növekszik</p>
 <div class="math">
-\[w_ij (k+1) = w_ij (k) + \mu * y_i * y_j\]</div>
-<p>ahol a w_ij az i-edik és a j-edik processzáló elem közötti súly és a y_i, ill. y_j a két processzáló elem kimenetének értéke. Ha a súly egy bemenet és egy processzáló elem között található</p>
+\[w_{ij} (k+1) = w_{ij} (k) + \mu y_i y_j\]</div>
+<p>ahol a <span class="math">\(w_{ij}\)</span> az i-edik és a j-edik processzáló elem közötti súly és a <span class="math">\(y_i\)</span>, ill. <span class="math">\(y_j\)</span> a két processzáló elem kimenetének értéke. Ha a súly egy bemenet és egy processzáló elem között található</p>
 <div class="math">
-\[w_ij (k+1) = w_ij(k) + \mu * x_i * y_j\]</div>
+\[w_{ij} (k+1) = w_{ij}(k) + \mu x_i y_j\]</div>
 <p>Bizonyos hálózatoknál alkalmazzák az anti-Hebb tanulást, amelynél a súlymódosítás hasonló csak negatív előjellel:</p>
 <div class="last math">
-\[w_ij (k+1) = w_ij(k) - \mu * x_i * y_j\]</div>
+\[w_{ij} (k+1) = w_{ij}(k) - \mu x_i y_j\]</div>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>Versengő tanulás</dt>
-<dd><p class="first">Egy processzáló elem-elrendezésben egy győztest válasszunk ki. A versengő tanulás célja általában a bemeneti mintatér olyan tartoményokra osztása, szegmentálása, hogy minden egyes tartományba tartozó bemenet hatására egy és csakis egy processzáló elem aktivizálódjon.</p>
+<dd><p class="first">Egy processzáló elem-elrendezésben egy győztest válasszunk ki. A versengő tanulás célja általában a bemeneti mintatér olyan tartományokra osztása, szegmentálása, hogy minden egyes tartományba tartozó bemenet hatására egy és csakis egy processzáló elem aktivizálódjon.</p>
 <dl class="docutils">
 <dt>A versengő tanulás két lépésből áll:</dt>
 <dd><ul class="first last simple">
@@ -221,7 +221,7 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 </ul>
 </dd>
 </dl>
-<a class="reference internal image-reference" href="../_images/competitiv_learning.png"><img alt="Generation" class="align-center" src="../_images/competitiv_learning.png" style="width: 300px; height: 200px;" /></a>
+<a class="reference internal image-reference" href="../_images/competitiv_learning.png"><img alt="Competitiv" class="align-center" src="../_images/competitiv_learning.png" style="width: 300px; height: 200px;" /></a>
 <p class="last">A tényleges tanulás, vagyis a súlyvektor módosítása csak a győztes processzáló elem súlyvektorát módosítjuk.</p>
 </dd>
 </dl>
@@ -234,8 +234,8 @@ Ha <em>nem ismerjük</em> pontosan a <em>választ</em>, csak azt hogy <em>helyes
 <ul>
 <li><dl class="first docutils">
 <dt>Hopfield hálózat</dt>
-<dd><p class="first">A modell a legegyszerűbb neurális hálózat, amely asszociatív memóriát valósít meg. A hálózatot leggyakrabban autoasszociatív feladatok megoldására használjuk. Ilyenkor a memóriában mintákat, gyakran digitalizált képeket tárolunk. A neurális hálózattól azt várjuk, hogy a tárolt információ zajos, torzított, esetleg hiányos változatának megmutatásakor az eredeti mintára asszociáljon.</p>
-<a class="last reference internal image-reference" href="../_images/hopfield_net.png"><img alt="Generation" class="align-center" src="../_images/hopfield_net.png" style="width: 350px; height: 200px;" /></a>
+<dd><p class="first">A modell a legegyszerűbb neurális hálózat, amely asszociatív memóriát valósít meg. A hálózatot leggyakrabban automatikus asszociatív feladatok megoldására használjuk. Ilyenkor a memóriában mintákat, gyakran digitalizált képeket tárolunk. A neurális hálózattól azt várjuk, hogy a tárolt információ zajos, torzított, esetleg hiányos változatának megmutatásakor az eredeti mintára asszociáljon.</p>
+<a class="last reference internal image-reference" href="../_images/hopfield_net.png"><img alt="Hopfield" class="align-center" src="../_images/hopfield_net.png" style="width: 350px; height: 200px;" /></a>
 </dd>
 </dl>
 </li>

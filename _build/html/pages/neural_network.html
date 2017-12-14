@@ -65,13 +65,13 @@
 </div></blockquote>
 </li>
 <li><dl class="first docutils">
-<dt>aktivációs függvény: A neuronokban használt <em>nemlinear</em>itások, ami <em>küszöbfüggvény</em> jellegű leképezés(<em>ÉT</em>:valós számok halmaza, <em>ÉK</em>: R, korlátos részhalmaza)</dt>
+<dt>aktivációs függvény: A neuronokban használt <em>nemlinear</em>itások, ami <em>küszöbfüggvény</em> jellegű leképezés(<em>ÉT</em>: valós számok halmaza, <em>ÉK</em>: R, korlátos részhalmaza)</dt>
 <dd><blockquote class="first">
 <div><ul class="simple">
-<li>lépcsőfgv</li>
-<li>telítéses lineáris fgv</li>
-<li>tangens hiberbolikus fgv</li>
-<li>logisztikus fgv</li>
+<li>lépcső függvény</li>
+<li>telítéses lineáris függvény</li>
+<li>tangens hiberbolikus függvény</li>
+<li>logisztikus függvény</li>
 </ul>
 </div></blockquote>
 <a class="last reference internal image-reference" href="../_images/activation_functions.png"><img alt="Activation Function" class="align-center" src="../_images/activation_functions.png" style="width: 300px; height: 150px;" /></a>
@@ -91,22 +91,22 @@
 </dd>
 </dl>
 </li>
-<li><p class="first">összekötetések: <em>Egy kimenet több bemenet</em>tel össze<em>köthető</em>, ekkor valamennyi bemenet ugyanazt a jelet kapja, <em>kimenetek</em>et egymással <em>nem</em> köthetünk össze.</p>
+<li><p class="first">összeköttetések: <em>Egy kimenet több bemenet</em>tel össze<em>köthető</em>, ekkor valamennyi bemenet ugyanazt a jelet kapja, <em>kimenetek</em>et egymással <em>nem</em> köthetünk össze.</p>
 </li>
-<li><p class="first">topológia: A neuronok összekapcsolási rendszerét irányított gráffal reprezentáljuk. A gráf csomópontja a neuronoknak felelnek meg, míg az összekötetéseket(súlytényezők) az éleknek felelnek meg.</p>
+<li><p class="first">topológia: A neuronok összekapcsolási rendszerét irányított gráffal reprezentáljuk. A gráf csomópontja a neuronoknak felelnek meg, míg az összeköttetéseket (súlytényezők) az éleknek felelnek meg.</p>
 </li>
 </ul>
 <p>Háromféle neuront különböztethetünk meg:</p>
 <ul class="simple">
 <li><em>bemeneti neuronok</em>: Bemenetük a hálózat bemenete, kimenetük más neuronok meghajtására szolgál.</li>
-<li><em>kimeneti neuronok</em>: Kimenete a környezet felé továbbítja a kivánt információt.</li>
-<li><em>rejtett neuronok</em>: Bemeneteikkel, mind kimenetükkel kizárólat más neuronokhoz kapcsolódnak.</li>
+<li><em>kimeneti neuronok</em>: Kimenete a környezet felé továbbítja a kívánt információt.</li>
+<li><em>rejtett neuronok</em>: Bemeneteikkel, mind kimenetükkel kizárólag más neuronokhoz kapcsolódnak.</li>
 </ul>
-<p>Réteg: A neuronokat sok esetben rétegekbe (layer) szervezzük, ahol egy rétegbe hasonló típusú neuronok tartoznak(kapcsolataik is hasonlóak). Ennek megfelelően beszélhetünk bemeneti(<em>input layer</em>), rejtett(<em>hidden layer</em>) és kimeneti rétegről(<em>output layer</em>)</p>
+<p>Réteg: A neuronokat sok esetben rétegekbe (layer) szervezzük, ahol egy rétegbe hasonló típusú neuronok tartoznak (kapcsolataik is hasonlóak). Ennek megfelelően beszélhetünk bemeneti (<em>input layer</em>), rejtett (<em>hidden layer</em>) és kimeneti rétegről (<em>output layer</em>)</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="../_images/hidden_layer.jpg"><img alt="Neural Network with Hidden Layer" class="align-center" src="../_images/hidden_layer.jpg" style="width: 300px; height: 150px;" /></a>
 </div></blockquote>
-<p>Rétegenként súlyvektorok vannak a súlyvektorokat összefoglalhatjuk egy egész hálózatra kiterjedő súly mátrixra (<strong>W</strong>). A bemeneti, rejtett és kimeneti neuronok adatait is mátrixba tároljuk, majd ezekkel végezük a számításokat.
+<p>Rétegenként súlyvektorok vannak, a súlyvektorokat összefoglalhatjuk egy egész hálózatra kiterjedő súly mátrixra (<strong>W</strong>). A bemeneti, rejtett és kimeneti neuronok adatait is mátrixba tároljuk, majd ezekkel végezük a számításokat.
 Topológia szerint két fő csoport van</p>
 <blockquote>
 <div><div class="admonition note">
@@ -116,7 +116,7 @@ Topológia szerint két fő csoport van</p>
 </div></blockquote>
 <ul class="simple">
 <li><dl class="first docutils">
-<dt>visszacsatolt hálózatok (feedback recall): Ha a neuronok indexelésével elérhető hogy a W olyan háromszög mátrix legyen, melynek főátlóbeli elemei nullák.</dt>
+<dt>visszacsatolt hálózatok (feedback recall): Ha a neuronok indexelésével elérhető, hogy a W olyan háromszög mátrix legyen, melynek főátlóbeli elemei nullák.</dt>
 <dd><ul class="first last">
 <li>Globális visszacsatolás</li>
 <li>Lokális visszacsatolás: Három csoport van az elemi, a laterális és a rétegek közötti visszacsatolások.</li>
@@ -132,7 +132,7 @@ Topológia szerint két fő csoport van</p>
 <ul class="simple">
 <li><strong>asszociatív memória</strong>: Speciális memória, melybe <em>meghatározott mód</em>on (<em>tanulás</em>) információt írunk be, majd <em>olvassuk ki</em> (<em>recall</em>)</li>
 <li><strong>optimalizáló rendszer</strong>: Optimalizálás során általában valamilyen költséget kívánunk minimalizálni, a rendszer struktúrájának, illetve paramétereinek megfelelő megválasztásával.</li>
-<li><strong>approximáló rendszer</strong>: A megfelelő matematikai előállítása központi feladat a mérnöki alkalmazások számos területén, pl. képfeldolgozás, alakfelismerés, jelfeldolgozés stb. A hálózat képes minták alapján a keresett leképezés közelítő előállítására.</li>
+<li><strong>approximáló rendszer</strong>: A megfelelő matematikai előállítása központi feladat a mérnöki alkalmazások számos területén, pl. képfeldolgozás, alakfelismerés, jelfeldolgozás stb. A hálózat képes minták alapján a keresett leképezés közelítő előállítására.</li>
 <li><strong>nem lineáris dinamikus rendszer</strong>: Neurális hálót kiegészítjük dinamikus komponensekkel. A tanítás rendszerint a statikus esetben is lassú, nehézkes, de a dinamikus esetben még ehhez képest is sokkal komplikáltabb, lassabb.</li>
 </ul>
 </div>
