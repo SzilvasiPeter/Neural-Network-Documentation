@@ -14,6 +14,7 @@ Welcome to ANN's documentation!
    pages/neural_network.rst
    pages/learning.rst
    pages/backpropagation.rst
+   pages/examples.rst
 
 
 Indices and tables

@@ -1,0 +1,261 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hu">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Python Példák &#8212; ANN  dokumentáció</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Tárgymutató" href="../genindex.html" />
+    <link rel="search" title="Keresés" href="../search.html" />
+    <link rel="prev" title="Backpropagation többrétegű hálózatnál (MLP)" href="backpropagation.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="python-peldak">
+<h1>Python Példák<a class="headerlink" href="#python-peldak" title="Hivatkozás erre a fejezetcímre">¶</a></h1>
+<div class="section" id="ket-retegu-neuralis-halozat">
+<h2>Két Rétegű Neurális Hálózat<a class="headerlink" href="#ket-retegu-neuralis-halozat" title="Hivatkozás erre a fejezetcímre">¶</a></h2>
+<ul>
+<li><p class="first">A neurális háló tanítása backpropagation-nel történik.</p>
+</li>
+<li><p class="first">A háló megpróbálja megjósolni adott bementre a kimenetet.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/example1_data.png"><img alt="Data" class="align-center" src="../_images/example1_data.png" style="width: 200px; height: 200px;" /></a>
+</div></blockquote>
+</li>
+</ul>
+<p>Próbáljuk meg megjósolni az első három oszlopban lévő bemenetre a kimenet. Megoldhatjuk a problémát, hogy ha megmérjük a statisztikákat a különböző bementekre és kimenetekre.</p>
+<p>Amint látjuk a bal szélső oszlop bemenete tökéletesen korrelál a kimenetre. Backpropagation, ebben az esetben, ezeket a statisztikákat méri, majd ebből állít fel egy modellt.</p>
+<p>Nézzük meg hogyan is működik ez valójában</p>
+<blockquote>
+<div><div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="c1"># sigmoid function</span>
+<span class="k">def</span> <span class="nf">nonlin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">deriv</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">deriv</span> <span class="o">==</span> <span class="bp">True</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+
+
+<span class="c1"># input dataset</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># output dataset</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># seed random numbers to make calculation</span>
+<span class="c1"># deterministic (just a good practice)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># initialize weights randomly with mean 0</span>
+<span class="n">syn0</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># forward propagation</span>
+    <span class="n">l0</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="n">l1</span> <span class="o">=</span> <span class="n">nonlin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">l0</span><span class="p">,</span> <span class="n">syn0</span><span class="p">))</span>
+
+    <span class="c1"># how much did we miss?</span>
+    <span class="n">l1_error</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">l1</span>
+
+    <span class="c1"># multiply how much we missed by the</span>
+    <span class="c1"># slope of the sigmoid at the values in l1</span>
+    <span class="n">l1_delta</span> <span class="o">=</span> <span class="n">l1_error</span> <span class="o">*</span> <span class="n">nonlin</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+    <span class="c1"># update weights</span>
+    <span class="n">syn0</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">l0</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">l1_delta</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Output After Training:&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<a class="reference internal image-reference" href="../_images/example1_first_output.png"><img alt="Output1" class="align-center" src="../_images/example1_first_output.png" style="width: 150px; height: 100px;" /></a>
+</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>X</td>
+<td>Bemeneti mátrix</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>Kimeneti mátrix</td>
+</tr>
+<tr class="row-odd"><td>l0</td>
+<td>A hálózat első rétege, bemeneti adattal specifikált</td>
+</tr>
+<tr class="row-even"><td>l1</td>
+<td>A hálózat második rétege, más néven rejtett réteg</td>
+</tr>
+<tr class="row-odd"><td>syn0</td>
+<td>Az első réteg súlyai, l0 és l1 réteget kapcsolja össze</td>
+</tr>
+<tr class="row-even"><td>*</td>
+<td>Elemenkénti szorzás</td>
+</tr>
+<tr class="row-odd"><td>-</td>
+<td>Elemenkénti kivonás</td>
+</tr>
+<tr class="row-even"><td>x.dot(y)</td>
+<td>Ha x és y mátrix, akkor mátrix-mátrix szorzás.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p class="first"><strong>1. sor</strong>: A numpy egy lineáris algebra könyvtár</p>
+</li>
+<li><p class="first"><strong>4. sor</strong>: A sigmoid függvény bármely értéket egy 0 és 1 közötti értékre térképez fel.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/sigmoid.png"><img alt="Sigmoid" class="align-center" src="../_images/sigmoid.png" style="width: 200px; height: 200px;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>10. sor</strong>: Három bemeneti csomópont van a hálózathoz és 4 képzési példa.</p>
+</li>
+<li><p class="first"><strong>16. sor</strong>: Ez létrehozza a kimeneti adatkészletünket. A „.T” transzponálja a vektort.</p>
+</li>
+<li><p class="first"><strong>20. sor</strong>: Jó ha a véletlen számok használunk súlyoknak.</p>
+</li>
+<li><p class="first"><strong>23. sor</strong>: Ez a neurális hálózatunk súlymátrixa.</p>
+</li>
+<li><p class="first"><strong>26. sor</strong>: Ez megkezdi a tényleges hálózati tanulást.</p>
+</li>
+<li><p class="first"><strong>29. sor</strong>: Ez a mi előrejelzési lépésünk.</p>
+</li>
+<li><p class="first"><strong>32. sor</strong>: Az l1_error csak pozitív és negatív számok vektora, ami tükrözi, hogy a hálózat mennyire hibás.</p>
+</li>
+<li><p class="first"><strong>36. sor</strong>: Ha l1 ezt a három pontot ábrázolja.  Minden derivált 0 és 1 között van. Figyeljük meg, hogy a nagyon magas értékek, mint az x = 2.0 (zöld pont) és a nagyon alacsony értékek, például az x = -1.0 (lila pont), meglehetősen sekélyek. A legmagasabb meredekség x = 0 (kék pont). Ez fontos szerepet játszik.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/example1_derivative.png"><img alt="Sigmoid Derivative" class="align-center" src="../_images/example1_derivative.png" style="width: 300px; height: 250px;" /></a>
+<p>Több „matematikailag precíz” módszer létezik, mint a „hiba súlyozott származtatott”. Az l1_error egy (4,1) mátrix, a nonlin (l1, True) egy (4,1) mátrixot ad vissza. Majd elemenként összeszorozzuk őket. Ez visszaad egy (4,1) mátrixot: l1_delta.</p>
+<p>Amikor mi összeszorozzuk „lejtőket” a hibákkal, akkor ezzel csökkentjük a hibát. Ha a lejtés sekély volt (közel 0-ra), akkor a hálózatnak nagyon magas vagy alacsony értéke volt.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>39. sor</strong>: A hálózat frissítése.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/example1_network_update.png"><img alt="Network Update" class="align-center" src="../_images/example1_network_update.png" style="width: 300px; height: 250px;" /></a>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="backpropagation.html" title="előző fejezet">Backpropagation többrétegű hálózatnál (MLP)</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Gyorskeresés</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Ok" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Szilvasi_Peter.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/pages/examples.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
